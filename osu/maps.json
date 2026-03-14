@@ -1,0 +1,36 @@
+[
+  {
+    "folder": "colorful-array",
+    "osu": [
+      {"file": "beatmap.osu","stars": 4.98}
+    ]
+  },
+  {
+    "folder": "ROLLING GIRL",
+    "osu": [
+      {"file": "OBKATIEKAT - ROLLING GIRL (feat. Evil Neuro) (Sayuka) [sayu's Normal].osu", "stars": 2.51},
+      {"file": "OBKATIEKAT - ROLLING GIRL (feat. Evil Neuro) (Sayuka) [Fuxi's Hard].osu", "stars": 3.94},
+      {"file": "OBKATIEKAT - ROLLING GIRL (feat. Evil Neuro) (Sayuka) [Amats' Light Insane].osu", "stars": 4.28},
+      {"file": "OBKATIEKAT - ROLLING GIRL (feat. Evil Neuro) (Sayuka) [hytaa's Insane].osu", "stars": 5.28},
+      {"file": "OBKATIEKAT - ROLLING GIRL (feat. Evil Neuro) (Sayuka) [Take & Sayuka's Extra].osu", "stars": 5.9},
+      {"file": "OBKATIEKAT - ROLLING GIRL (feat. Evil Neuro) (Sayuka) [Castie & Sayuka's Extreme].osu", "stars": 6.6},
+      {"file": "OBKATIEKAT - ROLLING GIRL (feat. Evil Neuro) (Sayuka) [Log Off Now's Endless Dream].osu", "stars": 7.1}
+    ]
+  },
+  {
+    "folder": "life",
+    "osu": [
+      {"file": "monii & Johnny R feat. Neuro-sama - LIFE (Andrea) [Normal].osu", "stars": 2.53},
+      {"file": "monii & Johnny R feat. Neuro-sama - LIFE (Andrea) [Hard].osu", "stars": 3.8},
+      {"file": "monii & Johnny R feat. Neuro-sama - LIFE (Andrea) [Laurier's Insane].osu", "stars": 4.86},
+      {"file": "monii & Johnny R feat. Neuro-sama - LIFE (Andrea) [Loneliness].osu", "stars": 5.76}
+    ]
+  },
+  {
+    "folder": "Partners In Crime",
+    "osu": [
+      {"file": "Set It Off - Partners In Crime (feat. Neuro-sama & Evil Neuro) (MyAngelRuri) [The Cookies Heist (Old)].osu", "stars": 5.95},
+      {"file": "Set It Off - Partners In Crime (feat. Neuro-sama & Evil Neuro) (MyAngelRuri) [The Cookies Heist (Remapped)].osu", "stars": 5.95}
+    ]
+  }
+]

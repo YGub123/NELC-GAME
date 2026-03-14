@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小游戏 · NeuroEcho</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+KuaiLe&display=swap');
+
+    :root {
+      --bg: #f3ead7;
+      --card: rgba(255, 252, 244, 0.95);
+      --text: #5a4e42;
+      --text-dim: #8b7a6b;
+      --accent: #ed8941;
+      --accent-glow: rgba(237, 137, 65, 0.3);
+      --brown: #8b6a52;
+      --zone-border: rgba(139, 106, 82, 0.4);
+      --back-bg: rgba(255, 252, 244, 0.9);
+      --back-border: rgba(176, 120, 83, 0.2);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1612;
+      --card: rgba(38, 32, 26, 0.95);
+      --text: #d4c8b8;
+      --text-dim: #9e8e7d;
+      --accent: #f0a060;
+      --accent-glow: rgba(240, 160, 96, 0.3);
+      --brown: #b89a7a;
+      --zone-border: rgba(176, 120, 83, 0.25);
+      --back-bg: rgba(38, 32, 26, 0.9);
+      --back-border: rgba(176, 120, 83, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg);
+      background-image: url("./image/background.webp");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: 'Noto Serif SC', serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: page-fade-in 0.4s ease;
+    }
+
+    @keyframes page-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes list-bounce-in {
+      0%   { transform: translateY(-50px); opacity: 0; }
+      40%  { transform: translateY(6px);   opacity: 1; }
+      65%  { transform: translateY(-3px); }
+      80%  { transform: translateY(1.5px); }
+      100% { transform: translateY(0); }
+    }
+
+    .back-link {
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      z-index: 100;
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--back-bg);
+      border-radius: 8px;
+      border: 1px solid var(--back-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+    }
+    .back-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 100;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--back-border);
+      background: var(--back-bg);
+      color: var(--brown);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+    }
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      color: var(--accent);
+    }
+
+    .list-card {
+      background: var(--card);
+      border: 1px solid var(--zone-border);
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      padding: 44px 52px;
+      text-align: center;
+      max-width: 460px;
+      width: 90%;
+      animation: list-bounce-in 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(176, 120, 83, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(176, 120, 83, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(139, 106, 82, 0.015) 20px, rgba(139, 106, 82, 0.015) 21px);
+    }
+
+    .list-title {
+      font-family: 'ZCOOL KuaiLe', sans-serif;
+      font-size: 2.6rem;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+    .list-title span { color: var(--accent); }
+
+    .list-subtitle {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .game-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .game-entry {
+      display: block;
+      padding: 14px 32px;
+      font-family: 'ZCOOL KuaiLe', sans-serif;
+      font-size: 1.05rem;
+      color: #fff;
+      background: linear-gradient(135deg, #ed8941, #d4723a);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(237, 137, 65, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .game-entry:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(237, 137, 65, 0.4);
+      color: #fff;
+    }
+    .game-entry:active { transform: translateY(1px); }
+
+    .game-entry.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] .game-entry {
+      background: linear-gradient(135deg, #f0a060, #c87030);
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 60px;
+      height: auto;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -20%);
+      transition: left 0.08s ease-out, top 0.08s ease-out;
+    }
+
+    @media (max-width: 640px) {
+      .list-card { padding: 32px 24px; }
+      .list-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="back-link" href="./"><i class="fas fa-arrow-left"></i> 返回主页</a>
+  <button class="theme-toggle" id="themeToggle"><i class="fas fa-adjust"></i></button>
+
+  <div class="list-card">
+    <div class="list-title">小游戏<span>合集</span></div>
+    <div class="list-subtitle">选择一个游戏开始体验</div>
+    <div class="game-list">
+      <a class="game-entry" href="./typing/typing.html">文字雨</a>
+      <a class="game-entry" href="./osu/">osu!</a>
+      <a class="game-entry disabled" href="#">敬请期待</a>
+    </div>
+  </div>
+
+  <script>
+    // 主题切换
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(dark) {
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      try { localStorage.setItem('game-theme', dark ? 'dark' : 'light'); } catch(e) {}
+    }
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      setTheme(!isDark);
+    });
+    try { if (localStorage.getItem('game-theme') === 'dark') setTheme(true); } catch(e) {}
+  </script>
+</body>
+</html>
