@@ -209,7 +209,7 @@
 <body>
 
   <div class="top-bar" id="topBar">
-    <a class="back-link" href="./"><i class="fas fa-arrow-left"></i> 返回列表</a>
+    <a class="back-link" href="/"><i class="fas fa-arrow-left"></i> 返回列表</a>
     <div class="page-title">osu<span>!</span></div>
     <button class="theme-toggle" id="themeToggle"><i class="fas fa-adjust"></i></button>
   </div>
@@ -411,7 +411,96 @@ function getSliderPosAt(path,t){if(!path||path.length<2)return path?path[0]:{x:0
     if(acc+d>=tgt){const f=(tgt-acc)/d;return{x:path[i-1].x+(path[i].x-path[i-1].x)*f,y:path[i-1].y+(path[i].y-path[i-1].y)*f}}acc+=d}return path[path.length-1]}
 
 // ══════════════════════════════════════════════
-//  3. 列表
+//  3. 音乐预览系统
+// ══════════════════════════════════════════════
+const Preview = {
+  audio: null,       // HTML5 Audio 元素
+  fadeTimer: null,    // 淡入淡出定时器
+  currentFolder: null,// 当前预览的文件夹（用于判断是否需要重新加载）
+  currentFile: null,  // 当前预览的音频文件名
+  volume: 0,         // 当前音量（用于淡入淡出）
+  targetVolume: 0.5, // 目标音量
+};
+
+function startPreview(bm) {
+  const folder = bm._folder;
+  const file = bm.general.audioFilename;
+  const previewTime = (bm.general.previewTime || 0) / 1000; // 转为秒
+
+  // 如果是同一首歌的同一个音频文件，不需要重新加载
+  if (Preview.audio && Preview.currentFolder === folder && Preview.currentFile === file) {
+    return;
+  }
+
+  // 先停掉之前的预览
+  stopPreview();
+
+  const audio = new Audio(folder + '/' + file);
+  audio.loop = false;
+  audio.volume = 0;
+  Preview.audio = audio;
+  Preview.currentFolder = folder;
+  Preview.currentFile = file;
+  Preview.volume = 0;
+
+  audio.addEventListener('loadedmetadata', () => {
+    // 设置到预览时间点
+    audio.currentTime = Math.max(0, previewTime);
+    audio.play().catch(() => {});
+    // 淡入
+    fadeIn();
+  }, { once: true });
+
+  // 音频播放到末尾时，循环回预览点
+  audio.addEventListener('ended', () => {
+    audio.currentTime = Math.max(0, previewTime);
+    audio.play().catch(() => {});
+  });
+}
+
+function fadeIn() {
+  clearInterval(Preview.fadeTimer);
+  Preview.fadeTimer = setInterval(() => {
+    Preview.volume = Math.min(Preview.volume + 0.02, Preview.targetVolume);
+    if (Preview.audio) Preview.audio.volume = Preview.volume;
+    if (Preview.volume >= Preview.targetVolume) clearInterval(Preview.fadeTimer);
+  }, 20); // 20ms * 25步 ≈ 500ms 淡入
+}
+
+function fadeOutAndStop(callback) {
+  clearInterval(Preview.fadeTimer);
+  if (!Preview.audio) { if (callback) callback(); return; }
+  Preview.fadeTimer = setInterval(() => {
+    Preview.volume = Math.max(Preview.volume - 0.04, 0);
+    if (Preview.audio) Preview.audio.volume = Preview.volume;
+    if (Preview.volume <= 0) {
+      clearInterval(Preview.fadeTimer);
+      if (Preview.audio) {
+        Preview.audio.pause();
+        Preview.audio.src = '';
+        Preview.audio = null;
+      }
+      Preview.currentFolder = null;
+      Preview.currentFile = null;
+      if (callback) callback();
+    }
+  }, 20); // 20ms * 12.5步 ≈ 250ms 淡出
+}
+
+function stopPreview() {
+  clearInterval(Preview.fadeTimer);
+  if (Preview.audio) {
+    Preview.audio.pause();
+    Preview.audio.src = '';
+    Preview.audio = null;
+  }
+  Preview.currentFolder = null;
+  Preview.currentFile = null;
+  Preview.volume = 0;
+}
+
+// ══════════════════════════════════════════════
+//  4. 列表
 // ══════════════════════════════════════════════
 const containerEl=document.getElementById('container');const loadingState=document.getElementById('loadingState');
 let allBeatmaps=[];
@@ -535,6 +624,8 @@ function toggleGroup(gi){
     const first=allBeatmaps[gi].diffs[0];
     const bgUrl=first.events.background?first._folder+'/'+first.events.background:'';
     if(bgUrl)document.body.style.backgroundImage=`url('${bgUrl}')`;
+    // 展开多难度组时，预览第一个难度的音乐
+    startPreview(first);
   }
 }
 
@@ -592,11 +683,15 @@ function showInfoPanel(gi,di){
   // 换页面背景
   const bgUrl=bm.events.background?bm._folder+'/'+bm.events.background:'';
   if(bgUrl){document.body.style.backgroundImage=`url('${bgUrl}')`}
+  // 开始音乐预览
+  startPreview(bm);
 }
 
 function hideInfoPanel(){
   document.getElementById('infoPanel').classList.remove('show');
   document.body.style.backgroundImage='url("/image/background.webp")';
+  // 淡出停止预览
+  fadeOutAndStop();
 }
 
 // ── 星星渲染 ──
@@ -626,7 +721,7 @@ function fmtTime(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
 // ══════════════════════════════════════════════
-//  4. 游戏引擎
+//  5. 游戏引擎
 // ══════════════════════════════════════════════
 const G={
   state:'list', bm:null,
@@ -660,6 +755,9 @@ const pauseOverlay=document.getElementById('pauseOverlay');
 
 // ── 进入游戏 ──
 async function onMapClick(bm){
+  // 停止预览音乐
+  fadeOutAndStop();
+
   G.bm=bm; G.state='loading';
   gameScreen.classList.remove('hidden');
   document.getElementById('topBar').style.display='none';
@@ -897,7 +995,7 @@ function judgeHit(idx,result,time){
       color:colors[result]})}}
 
 // ══════════════════════════════════════════════
-//  5. 渲染
+//  6. 渲染
 // ══════════════════════════════════════════════
 function render(){
   const ctx=G.ctx;const W=G.canvas.width,H=G.canvas.height;
