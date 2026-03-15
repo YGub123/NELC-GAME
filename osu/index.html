@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <base href="/NELC-GAME.github.io/">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>osu! · NeuroEcho</title>
@@ -117,7 +118,7 @@
 </head>
 <body>
   <div class="top-bar" id="topBar">
-    <a class="back-link" href="/"><i class="fas fa-arrow-left"></i> 返回列表</a>
+    <a class="back-link" href="/index.html"><i class="fas fa-arrow-left"></i> 返回列表</a>
     <div class="page-title">osu<span>!</span></div>
     <button class="theme-toggle" id="themeToggle"><i class="fas fa-adjust"></i></button>
   </div>
@@ -179,9 +180,6 @@
   </div>
 
 <script>
-// ══════════════════════════════════════════════
-//  0. 皮肤 & 音效资源系统
-// ══════════════════════════════════════════════
 const SKINS_ROOT = '/osu/Skins/';
 const DEFAULT_SKIN = 'Legacy';
 let currentSkin = null; // 未来用于皮肤选择，null=只用默认
@@ -744,8 +742,8 @@ function renderSlider(ctx, obj, cr, col, alpha, time) {
   const path = obj._path;
   if (!path || path.length < 2) return;
 
-  const trackScale = 0.85;       // 让轨道整体变窄、变短（数值越小越细短）
-  const trackAlpha = alpha * 0.7; // 轨道的整体透明度
+  const trackScale = 0.85;
+  const trackAlpha = alpha * 0.7;
   const baseW = cr * 2 * trackScale;
 
   const [r, g, b] = obj.comboColor;
