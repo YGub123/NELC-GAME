@@ -13,14 +13,13 @@
     body{background-color:var(--bg);background-image:url("../image/background.webp");background-size:cover;background-position:center;background-attachment:fixed;font-family:'Noto Serif SC',serif;color:var(--text);min-height:100vh;animation:pageFade .4s ease;cursor: none;overflow-x:hidden}
     @keyframes pageFade{from{opacity:0}to{opacity:1}}
     @keyframes cardUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-    .top-bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--back-bg);border-bottom:1px solid var(--zone-border);backdrop-filter:blur(8px)}
-    .back-link{color:var(--brown);text-decoration:none;font-size:.9rem;display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;transition:all .2s;cursor:pointer;background:none;border:none;font-family:'Noto Serif SC',serif}
-    .back-link:hover{color:var(--accent)}
-    .page-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.3rem;color:var(--brown);position:absolute;left:50%;transform:translateX(-50%)}
-    .page-title span{color:var(--accent)}
-    .theme-toggle{width:36px;height:36px;border-radius:6px;border:1px solid var(--back-border);background:transparent;color:var(--brown);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-    .theme-toggle:hover{color:var(--accent)}
-    .container{max-width:900px;margin:0 auto;padding:80px 20px 40px}
+    .back-btn{position:fixed;top:12px;left:12px;z-index:100;
+      padding:8px 16px;border-radius:8px;border:1px solid var(--zone-border);
+      background:var(--back-bg);backdrop-filter:blur(8px);
+      color:var(--brown);font-family:'Noto Serif SC',serif;font-size:.85rem;
+      cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s}
+    .back-btn:hover{color:var(--accent);border-color:var(--accent)}
+    .container{max-width:900px;margin:0 auto;padding:20px 20px 60px}
     .loading{text-align:center;padding:80px 0;color:var(--text-dim);font-size:1.1rem}
     .loading i{margin-right:8px;color:var(--accent)}
     .stat-row{display:flex;gap:8px;flex-wrap:wrap}
@@ -113,18 +112,23 @@
     .rp-buttons{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;width:80%}
     .rp-btn{padding:10px 0;font-family:'ZCOOL KuaiLe',sans-serif;font-size:1rem;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:6px;background:rgba(255,255,255,.1);cursor:pointer;text-align:center;transition:all .2s;backdrop-filter:blur(4px)}
     .rp-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
+    .site-footer{position:fixed;bottom:0;left:0;right:0;z-index:90;
+      text-align:center;padding:10px 20px;font-size:.72rem;
+      color:var(--text-dim);background:var(--back-bg);
+      border-top:1px solid var(--zone-border);backdrop-filter:blur(8px)}
+    .site-footer a{color:var(--accent);text-decoration:none}
+    .site-footer a:hover{text-decoration:underline;color:var(--brown)}
   </style>
 </head>
 <body>
-  <div class="top-bar" id="topBar">
-    <a class="back-link" href="../"><i class="fas fa-arrow-left"></i> 返回列表</a>
-    <div class="page-title">osu<span>!</span></div>
-    <button class="theme-toggle" id="themeToggle"><i class="fas fa-adjust"></i></button>
-  </div>
+  <a class="back-btn" id="topBar" href="../"><i class="fas fa-arrow-left"></i> 返回</a>
   <div class="info-panel" id="infoPanel"></div>
   <div class="container" id="container">
     <div class="loading" id="loadingState"><i class="fas fa-spinner fa-spin"></i> 正在加载谱面列表…</div>
   </div>
+  <footer class="site-footer">
+  游戏音效及皮肤素材来自 <a href="https://github.com/ppy/osu-resources" target="_blank" rel="noopener">ppy/osu-resources</a>，采用 <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC 4.0</a> 协议
+</footer>
   <div class="game-screen hidden" id="gameScreen">
     <video id="bgVideo" muted playsinline></video>
     <canvas id="gameCanvas"></canvas>
@@ -659,6 +663,7 @@ const gameScreen=document.getElementById('gameScreen'),gameCanvas=document.getEl
   resultsOverlay=document.getElementById('resultsOverlay'),pauseOverlay=document.getElementById('pauseOverlay');
 
 async function onMapClick(bm){fadeOutAndStop();await initHitSounds();
+  document.querySelector('.site-footer').style.display='none';
   G.bm=bm;G.state='loading';gameScreen.classList.remove('hidden');document.getElementById('topBar').style.display='none';
   gamePrompt.classList.remove('hidden');promptText.textContent='加载音频中…';
   promptSub.textContent=(bm.metadata.titleUnicode||bm.metadata.title)+' ['+bm.metadata.version+']';
@@ -1055,6 +1060,7 @@ function hitRow(c, l, n) {
 }
 
 function exitGame(){G.state='list';cancelAnimationFrame(G.animFrame);
+  document.querySelector('.site-footer').style.display='';
   try{if(G.audioSource)G.audioSource.stop()}catch(e){}try{if(G.audioCtx)G.audioCtx.close()}catch(e){}
   G.audioCtx=null;G.audioSource=null;G.audioBuffer=null;G.bgImage=null;
   const vEl=document.getElementById('bgVideo');vEl.pause();vEl.style.opacity='0';vEl.removeAttribute('src');G.bgVideo=null;
