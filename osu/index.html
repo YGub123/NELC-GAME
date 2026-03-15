@@ -7,219 +7,124 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+KuaiLe&family=JetBrains+Mono:wght@400;700&display=swap');
-
-    :root {
-      --bg:#f3ead7;--card:rgba(255,252,244,0.95);--text:#5a4e42;
-      --text-dim:#8b7a6b;--accent:#ed8941;--accent-glow:rgba(237,137,65,0.25);
-      --brown:#8b6a52;--pink:#ff6b9d;--blue:#4fc3f7;--green:#66bb6a;
-      --yellow:#ffd54f;--zone-border:rgba(139,106,82,0.3);
-      --overlay-bg:rgba(243,234,215,0.95);--back-bg:rgba(255,252,244,0.9);
-      --back-border:rgba(176,120,83,0.2);--stat-bg:rgba(139,106,82,0.08);
-    }
-    [data-theme="dark"] {
-      --bg:#1a1612;--card:rgba(38,32,26,0.95);--text:#d4c8b8;
-      --text-dim:#9e8e7d;--accent:#f0a060;--accent-glow:rgba(240,160,96,0.25);
-      --brown:#b89a7a;--pink:#ff8ab5;--blue:#64b5f6;--green:#81c784;
-      --yellow:#ffe082;--zone-border:rgba(176,120,83,0.2);
-      --overlay-bg:rgba(26,22,18,0.95);--back-bg:rgba(38,32,26,0.9);
-      --back-border:rgba(176,120,83,0.15);--stat-bg:rgba(176,120,83,0.08);
-    }
+    :root{--bg:#f3ead7;--card:rgba(255,252,244,0.95);--text:#5a4e42;--text-dim:#8b7a6b;--accent:#ed8941;--accent-glow:rgba(237,137,65,0.25);--brown:#8b6a52;--pink:#ff6b9d;--blue:#4fc3f7;--green:#66bb6a;--yellow:#ffd54f;--zone-border:rgba(139,106,82,0.3);--overlay-bg:rgba(243,234,215,0.95);--back-bg:rgba(255,252,244,0.9);--back-border:rgba(176,120,83,0.2);--stat-bg:rgba(139,106,82,0.08)}
+    [data-theme="dark"]{--bg:#1a1612;--card:rgba(38,32,26,0.95);--text:#d4c8b8;--text-dim:#9e8e7d;--accent:#f0a060;--accent-glow:rgba(240,160,96,0.25);--brown:#b89a7a;--pink:#ff8ab5;--blue:#64b5f6;--green:#81c784;--yellow:#ffe082;--zone-border:rgba(176,120,83,0.2);--overlay-bg:rgba(26,22,18,0.95);--back-bg:rgba(38,32,26,0.9);--back-border:rgba(176,120,83,0.15);--stat-bg:rgba(176,120,83,0.08)}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{background-color:var(--bg);background-image:url("/image/background.webp");
-      background-size:cover;background-position:center;background-attachment:fixed;
-      font-family:'Noto Serif SC',serif;color:var(--text);min-height:100vh;
-      animation:pageFade .4s ease;overflow-x:hidden}
+    body{background-color:var(--bg);background-image:url("/image/background.webp");background-size:cover;background-position:center;background-attachment:fixed;font-family:'Noto Serif SC',serif;color:var(--text);min-height:100vh;animation:pageFade .4s ease;overflow-x:hidden}
     @keyframes pageFade{from{opacity:0}to{opacity:1}}
     @keyframes cardUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-
-    .top-bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;
-      justify-content:space-between;align-items:center;padding:12px 24px;
-      background:var(--back-bg);border-bottom:1px solid var(--zone-border);backdrop-filter:blur(8px)}
-    .back-link{color:var(--brown);text-decoration:none;font-size:.9rem;display:flex;
-      align-items:center;gap:6px;padding:6px 14px;border-radius:6px;transition:all .2s;
-      cursor:pointer;background:none;border:none;font-family:'Noto Serif SC',serif}
+    .top-bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--back-bg);border-bottom:1px solid var(--zone-border);backdrop-filter:blur(8px)}
+    .back-link{color:var(--brown);text-decoration:none;font-size:.9rem;display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;transition:all .2s;cursor:pointer;background:none;border:none;font-family:'Noto Serif SC',serif}
     .back-link:hover{color:var(--accent)}
-    .page-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.3rem;color:var(--brown);
-      position:absolute;left:50%;transform:translateX(-50%)}
+    .page-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.3rem;color:var(--brown);position:absolute;left:50%;transform:translateX(-50%)}
     .page-title span{color:var(--accent)}
-    .theme-toggle{width:36px;height:36px;border-radius:6px;border:1px solid var(--back-border);
-      background:transparent;color:var(--brown);font-size:1rem;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .theme-toggle{width:36px;height:36px;border-radius:6px;border:1px solid var(--back-border);background:transparent;color:var(--brown);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
     .theme-toggle:hover{color:var(--accent)}
     .container{max-width:900px;margin:0 auto;padding:80px 20px 40px}
     .loading{text-align:center;padding:80px 0;color:var(--text-dim);font-size:1.1rem}
     .loading i{margin-right:8px;color:var(--accent)}
-.stat-row{display:flex;gap:8px;flex-wrap:wrap}
+    .stat-row{display:flex;gap:8px;flex-wrap:wrap}
     .stat-pill{display:flex;align-items:center;gap:5px;background:var(--stat-bg);padding:4px 10px;border-radius:4px;font-size:.78rem;font-family:'JetBrains Mono',monospace}
     .stat-label{color:var(--text-dim)}.stat-value{color:var(--brown);font-weight:700}
     .empty-state{text-align:center;padding:80px 0;color:var(--text-dim)}
     .empty-state i{font-size:3rem;margin-bottom:16px;display:block;color:var(--zone-border)}
-
     .song-group{margin-bottom:6px;animation:cardUp .5s ease backwards;overflow:visible}
-
-    /* ── 主卡片 ── */
-    .sg-card{display:flex;border-radius:8px;overflow:hidden;cursor:pointer;
-      position:relative;height:100px;transition:transform .15s;box-shadow:0 2px 12px rgba(0,0,0,.12)}
-    .sg-card:hover{transform:scale(1.02)}
-    .sg-card:active{transform:scale(0.99)}
-    .sg-card.selected .sg-body{background:rgba(255,255,255,0.95) !important}
-    .sg-card.selected .sg-title{color:#333;text-shadow:none}
-    .sg-card.selected .sg-sub{color:#666}
+    .sg-card{display:flex;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;height:100px;transition:transform .15s;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+    .sg-card:hover{transform:scale(1.02)}.sg-card:active{transform:scale(0.99)}
+    .sg-card.selected .sg-body{background:rgba(255,255,255,0.95)!important}
+    .sg-card.selected .sg-title{color:#333;text-shadow:none}.sg-card.selected .sg-sub{color:#666}
     .sg-card.selected .sg-diff-name{color:#444;text-shadow:none}
-    .sg-card.selected .star-full{color:rgba(0,0,0,.7)}
-    .sg-card.selected .star-partial{color:rgba(0,0,0,.15)}
-    .sg-card.selected .star-partial-fill{color:rgba(0,0,0,.7)}
-    .sg-card.selected .star-empty{color:rgba(0,0,0,.12)}
+    .sg-card.selected .star-full{color:rgba(0,0,0,.7)}.sg-card.selected .star-partial{color:rgba(0,0,0,.15)}
+    .sg-card.selected .star-partial-fill{color:rgba(0,0,0,.7)}.sg-card.selected .star-empty{color:rgba(0,0,0,.12)}
     .sg-thumb{width:100px;min-height:100%;background-size:cover;background-position:center;flex-shrink:0}
     .sg-body{flex:1;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-    .sg-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.15rem;color:#fff;
-      text-shadow:0 1px 3px rgba(0,0,0,.4);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sg-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.15rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .sg-sub{font-size:.76rem;opacity:.7;color:#fff;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .sg-diff-name{font-size:.88rem;font-weight:700;color:#fff;margin-top:2px;
-      font-family:'ZCOOL KuaiLe',sans-serif;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+    .sg-diff-name{font-size:.88rem;font-weight:700;color:#fff;margin-top:2px;font-family:'ZCOOL KuaiLe',sans-serif;text-shadow:0 1px 2px rgba(0,0,0,.3)}
     .sg-stars{display:flex;align-items:center;gap:0;margin-top:3px;font-size:.8rem}
-    .sg-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);
-      color:rgba(255,255,255,.4);font-size:.65rem;transition:transform .3s}
+    .sg-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.4);font-size:.65rem;transition:transform .3s}
     .sg-arrow.open{transform:translateY(-50%) rotate(180deg)}
-
-    /* 多难度：品红背景 */
     .sg-multi .sg-body{background:rgba(190,50,130,0.75)}
-    /* 单难度：根据星级着色，默认蓝 */
     .sg-single .sg-body{background:rgba(60,120,200,0.8)}
-
-    /* ── 展开的难度列表 ── */
-    .diff-list{max-height:0;opacity:0;overflow:hidden;
-      transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s ease}
+    .diff-list{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s ease}
     .diff-list.expanded{max-height:3000px;opacity:1;overflow:visible}
-
-    /* ── 难度子卡片 ── */
-    .diff-card{display:flex;height:90px;cursor:pointer;position:relative;
-      margin:3px 0 0 0;border-radius:6px;overflow:hidden;
-      transition:transform .15s;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-    .diff-card:hover{transform:scale(1.02)}
-    .diff-card:active{transform:scale(0.99)}
-    .diff-card .sg-thumb{width:90px}
-    .diff-card .sg-body{background:rgba(50,110,200,0.82)}
+    .diff-card{display:flex;height:90px;cursor:pointer;position:relative;margin:3px 0 0 0;border-radius:6px;overflow:hidden;transition:transform .15s;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .diff-card:hover{transform:scale(1.02)}.diff-card:active{transform:scale(0.99)}
+    .diff-card .sg-thumb{width:90px}.diff-card .sg-body{background:rgba(50,110,200,0.82)}
     .diff-card.selected .sg-body{background:rgba(255,255,255,0.95)}
-    .diff-card.selected .sg-title{color:#333;text-shadow:none}
-    .diff-card.selected .sg-sub{color:#666}
+    .diff-card.selected .sg-title{color:#333;text-shadow:none}.diff-card.selected .sg-sub{color:#666}
     .diff-card.selected .sg-diff-name{color:#444;text-shadow:none}
-    .diff-card.selected .star-full{color:rgba(0,0,0,.7)}
-    .diff-card.selected .star-partial{color:rgba(0,0,0,.15)}
-    .diff-card.selected .star-partial-fill{color:rgba(0,0,0,.7)}
-    .diff-card.selected .star-empty{color:rgba(0,0,0,.12)}
-
-    /* ── 星星 ── */
+    .diff-card.selected .star-full{color:rgba(0,0,0,.7)}.diff-card.selected .star-partial{color:rgba(0,0,0,.15)}
+    .diff-card.selected .star-partial-fill{color:rgba(0,0,0,.7)}.diff-card.selected .star-empty{color:rgba(0,0,0,.12)}
     .star-full{color:rgba(255,255,255,.9);font-size:1em}
     .star-empty{color:rgba(255,255,255,.25);font-size:.3em;vertical-align:middle}
     .star-partial{position:relative;display:inline-block;color:rgba(255,255,255,.25);font-size:1em}
     .star-partial-fill{position:absolute;left:0;top:0;overflow:hidden;color:rgba(255,255,255,.9)}
     [data-theme="dark"] .star-empty{color:rgba(255,255,255,.15)}
-
-    /* ── 选中后的信息面板 ── */
-    .info-panel{position:fixed;top:70px;left:12px;z-index:50;width:300px;
-      background:rgba(30,50,80,.85);backdrop-filter:blur(8px);border-radius:8px;
-      border:1px solid rgba(100,160,255,.15);
-      padding:14px 18px;color:#fff;font-family:'JetBrains Mono',monospace;
-      box-shadow:0 4px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05);
-      transition:opacity .25s,transform .25s;
-      opacity:0;transform:translateY(-10px);pointer-events:none}
+    .info-panel{position:fixed;top:70px;left:12px;z-index:50;width:300px;background:rgba(30,50,80,.85);backdrop-filter:blur(8px);border-radius:8px;border:1px solid rgba(100,160,255,.15);padding:14px 18px;color:#fff;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05);transition:opacity .25s,transform .25s;opacity:0;transform:translateY(-10px);pointer-events:none}
     .info-panel.show{opacity:1;transform:translateY(0);pointer-events:auto}
     .ip-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.1rem;line-height:1.3;margin-bottom:2px}
     .ip-mapper{font-size:.72rem;opacity:.5;margin-bottom:10px}
     .ip-row{display:flex;gap:16px;font-size:.78rem;margin-bottom:4px;flex-wrap:wrap}
     .ip-item{display:flex;gap:4px}.ip-label{opacity:.5}.ip-val{font-weight:700}
     .ip-divider{height:1px;background:rgba(255,255,255,.12);margin:8px 0}
-    [data-theme="dark"] .play-btn{background:linear-gradient(135deg,#f0a060,#c87030)}
-
-    /* ═══ 游戏画面 ═══ */
-    .game-screen{position:fixed;inset:0;z-index:200;background:#000;
-      display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .game-screen{position:fixed;inset:0;z-index:200;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .game-screen.hidden{display:none}
     #bgVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s;pointer-events:none;z-index:0}
     #gameCanvas{display:block;position:relative;z-index:1}
     .game-hud{position:fixed;top:0;left:0;right:0;z-index:210;pointer-events:none}
-    .ghud-score{position:absolute;top:12px;right:20px;text-align:right;
-      font-family:'JetBrains Mono',monospace;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+    .ghud-score{position:absolute;top:12px;right:20px;text-align:right;font-family:'JetBrains Mono',monospace;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.6)}
     .ghud-score-num{font-size:2.8rem;font-weight:700;letter-spacing:3px}
     .ghud-accuracy{font-size:1.6rem;opacity:.85;display:flex;align-items:center;gap:10px;justify-content:flex-end}
-    .ghud-combo{position:fixed;bottom:40px;left:24px;z-index:210;
-      font-family:'ZCOOL KuaiLe',sans-serif;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none}
+    .ghud-combo{position:fixed;bottom:40px;left:24px;z-index:210;font-family:'ZCOOL KuaiLe',sans-serif;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none}
     .ghud-combo-num{font-size:3.5rem;line-height:1}.ghud-combo-label{font-size:.8rem;opacity:.6}
-    .game-back{position:fixed;top:12px;left:16px;z-index:220;color:rgba(255,255,255,.6);
-      background:none;border:none;font-size:1.4rem;cursor:pointer;transition:color .2s;padding:8px}
+    .game-back{position:fixed;top:12px;left:16px;z-index:220;color:rgba(255,255,255,.6);background:none;border:none;font-size:1.4rem;cursor:pointer;transition:color .2s;padding:8px}
     .game-back:hover{color:#fff}
-
-    /* 开始提示 */
-    .game-prompt{position:fixed;inset:0;z-index:215;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;background:rgba(0,0,0,.7);color:#fff;
-      font-family:'ZCOOL KuaiLe',sans-serif}
+    .game-prompt{position:fixed;inset:0;z-index:215;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.7);color:#fff;font-family:'ZCOOL KuaiLe',sans-serif}
     .game-prompt.hidden{display:none}
     .game-prompt-text{font-size:2rem;margin-bottom:8px}.game-prompt-sub{font-size:1rem;opacity:.6}
-
-    /* ═══ 暂停菜单 ═══ */
-    .pause-overlay{position:fixed;inset:0;z-index:250;display:flex;align-items:center;
-      justify-content:center;background:rgba(0,0,0,.65);backdrop-filter:blur(4px)}
+    .pause-overlay{position:fixed;inset:0;z-index:250;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.65);backdrop-filter:blur(4px)}
     .pause-overlay.hidden{display:none}
     .pause-menu{display:flex;flex-direction:column;gap:14px;align-items:center}
-    .pause-btn{width:240px;padding:16px 0;font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.2rem;
-      color:#fff;border:2px solid rgba(255,255,255,.3);border-radius:8px;background:rgba(255,255,255,.08);
-      cursor:pointer;transition:all .2s;text-align:center;backdrop-filter:blur(4px)}
+    .pause-btn{width:240px;padding:16px 0;font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.2rem;color:#fff;border:2px solid rgba(255,255,255,.3);border-radius:8px;background:rgba(255,255,255,.08);cursor:pointer;transition:all .2s;text-align:center;backdrop-filter:blur(4px)}
     .pause-btn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);transform:scale(1.04)}
     .pause-btn:active{transform:scale(.97)}
     .pause-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:2.2rem;color:#fff;margin-bottom:20px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
-
-    /* ═══ 结算面板 ═══ */
-    .results-overlay{position:fixed;inset:0;z-index:230;display:flex;align-items:center;
-      justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
+    .results-overlay{position:fixed;inset:0;z-index:230;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
     .results-overlay.hidden{display:none}
-    .results-panel{position:relative;width:90%;max-width:820px;display:flex;gap:0;
-      border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.4)}
-    /* 左侧信息区 */
-    .rp-left{flex:1;background:rgba(50,120,220,.85);padding:28px 32px;color:#fff;
-      display:flex;flex-direction:column;justify-content:space-between;min-height:380px}
+    .results-panel{position:relative;width:90%;max-width:820px;display:flex;gap:0;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+    .rp-left{flex:1;background:rgba(50,120,220,.85);padding:28px 32px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:380px}
     .rp-header{margin-bottom:12px}
     .rp-song{font-family:'ZCOOL KuaiLe',sans-serif;font-size:1.1rem;opacity:.9;line-height:1.3}
     .rp-mapper{font-size:.75rem;opacity:.6;margin-top:4px}
-    .rp-score{font-family:'JetBrains Mono',monospace;font-size:2.8rem;font-weight:700;
-      letter-spacing:3px;margin:8px 0 16px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+    .rp-score{font-family:'JetBrains Mono',monospace;font-size:2.8rem;font-weight:700;letter-spacing:3px;margin:8px 0 16px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
     .rp-hits{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
     .rp-hit{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.95rem}
     .rp-hit-badge{width:42px;text-align:center;padding:2px 0;border-radius:4px;font-size:.75rem;font-weight:700}
     .rp-hit-count{font-weight:700}
-    .rp-footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;
-      padding-top:12px;border-top:1px solid rgba(255,255,255,.2)}
+    .rp-footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2)}
     .rp-combo-block,.rp-acc-block{text-align:center}
     .rp-combo-label,.rp-acc-label{font-size:.7rem;opacity:.6;text-transform:uppercase}
     .rp-combo-val,.rp-acc-val{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700}
-    /* 右侧背景+评级 */
-    .rp-right{width:300px;position:relative;background-size:cover;background-position:center;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+    .rp-right{width:300px;position:relative;background-size:cover;background-position:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
     .rp-right::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.4)}
-    .rp-grade{position:relative;z-index:1;font-family:'JetBrains Mono',monospace;
-      font-size:8rem;font-weight:700;line-height:1;text-shadow:0 4px 20px rgba(0,0,0,.5)}
+    .rp-grade{position:relative;z-index:1;font-family:'JetBrains Mono',monospace;font-size:8rem;font-weight:700;line-height:1;text-shadow:0 4px 20px rgba(0,0,0,.5)}
     .rp-grade.S{color:#f0d060}.rp-grade.A{color:#5cff5c}.rp-grade.B{color:#5c9eff}.rp-grade.C{color:#c090ff}.rp-grade.D{color:#ff5c5c}
     .rp-buttons{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;width:80%}
-    .rp-btn{padding:10px 0;font-family:'ZCOOL KuaiLe',sans-serif;font-size:1rem;color:#fff;
-      border:1.5px solid rgba(255,255,255,.35);border-radius:6px;background:rgba(255,255,255,.1);
-      cursor:pointer;text-align:center;transition:all .2s;backdrop-filter:blur(4px)}
+    .rp-btn{padding:10px 0;font-family:'ZCOOL KuaiLe',sans-serif;font-size:1rem;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:6px;background:rgba(255,255,255,.1);cursor:pointer;text-align:center;transition:all .2s;backdrop-filter:blur(4px)}
     .rp-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
   </style>
 </head>
 <body>
-
   <div class="top-bar" id="topBar">
     <a class="back-link" href="/"><i class="fas fa-arrow-left"></i> 返回列表</a>
     <div class="page-title">osu<span>!</span></div>
     <button class="theme-toggle" id="themeToggle"><i class="fas fa-adjust"></i></button>
   </div>
-
   <div class="info-panel" id="infoPanel"></div>
   <div class="container" id="container">
     <div class="loading" id="loadingState"><i class="fas fa-spinner fa-spin"></i> 正在加载谱面列表…</div>
   </div>
-
-  <!-- 游戏画面 -->
   <div class="game-screen hidden" id="gameScreen">
     <video id="bgVideo" muted playsinline></video>
     <canvas id="gameCanvas"></canvas>
@@ -242,8 +147,6 @@
       <div class="game-prompt-sub" id="promptSub"></div>
     </div>
   </div>
-
-  <!-- 暂停菜单 -->
   <div class="pause-overlay hidden" id="pauseOverlay">
     <div class="pause-menu">
       <div class="pause-title">暂停</div>
@@ -252,28 +155,17 @@
       <button class="pause-btn" id="pauseQuit">✕ 返回菜单</button>
     </div>
   </div>
-
-  <!-- 结算 -->
   <div class="results-overlay hidden" id="resultsOverlay">
     <div class="results-panel" id="resultsPanel">
       <div class="rp-left">
         <div>
-          <div class="rp-header">
-            <div class="rp-song" id="rpSong"></div>
-            <div class="rp-mapper" id="rpMapper"></div>
-          </div>
+          <div class="rp-header"><div class="rp-song" id="rpSong"></div><div class="rp-mapper" id="rpMapper"></div></div>
           <div class="rp-score" id="rpScore">0</div>
           <div class="rp-hits" id="rpHits"></div>
         </div>
         <div class="rp-footer">
-          <div class="rp-combo-block">
-            <div class="rp-combo-label">Max Combo</div>
-            <div class="rp-combo-val" id="rpCombo">0x</div>
-          </div>
-          <div class="rp-acc-block">
-            <div class="rp-acc-label">Accuracy</div>
-            <div class="rp-acc-val" id="rpAcc">0%</div>
-          </div>
+          <div class="rp-combo-block"><div class="rp-combo-label">Max Combo</div><div class="rp-combo-val" id="rpCombo">0x</div></div>
+          <div class="rp-acc-block"><div class="rp-acc-label">Accuracy</div><div class="rp-acc-val" id="rpAcc">0%</div></div>
         </div>
       </div>
       <div class="rp-right" id="rpRight">
@@ -288,8 +180,145 @@
 
 <script>
 // ══════════════════════════════════════════════
-//  1. 解析器
+//  0. 皮肤 & 音效资源系统
 // ══════════════════════════════════════════════
+const SKINS_ROOT = '/osu/Skins/';
+const DEFAULT_SKIN = 'Legacy';
+let currentSkin = null; // 未来用于皮肤选择，null=只用默认
+
+const Skin = { img: {}, tinted: {} };
+
+// 逻辑名 → 各皮肤下的实际文件名映射
+// Legacy 的文件都带 @2x 后缀，Retro 不带
+const SKIN_FILE_MAP = {
+  Legacy: {
+    'hitcircle':'hitcircle@2x.png','hitcircleoverlay':'hitcircleoverlay@2x.png',
+    'approachcircle':'approachcircle@2x.png',
+    'default-0':'default-0@2x.png','default-1':'default-1@2x.png','default-2':'default-2@2x.png',
+    'default-3':'default-3@2x.png','default-4':'default-4@2x.png','default-5':'default-5@2x.png',
+    'default-6':'default-6@2x.png','default-7':'default-7@2x.png','default-8':'default-8@2x.png',
+    'default-9':'default-9@2x.png',
+    'sliderb0':'sliderb0@2x.png','sliderb1':'sliderb1@2x.png','sliderb2':'sliderb2@2x.png','sliderb3':'sliderb3@2x.png',
+    'sliderb4':'sliderb4@2x.png','sliderb5':'sliderb5@2x.png','sliderb6':'sliderb6@2x.png','sliderb7':'sliderb7@2x.png',
+    'sliderb8':'sliderb8@2x.png','sliderb9':'slider9@2x.png','sliderfollowcircle':'sliderfollowcircle@2x.png',
+    'reversearrow':'reversearrow@2x.png',
+    'cursor':'cursor@2x.png','cursortrail':'cursortrail@2x.png','cursormiddle':'cursormiddle@2x.png',
+    'hit0':'hit0@2x.png','hit50':'hit50@2x.png','hit100':'hit100@2x.png','hit300':'hit300@2x.png',
+    'hit300g':'hit300g@2x.png','hit300k':'hit300k@2x.png','hit100k':'hit100k@2x.png',
+    'spinner-circle':'spinner-circle@2x.png','spinner-approachcircle':'spinner-approachcircle@2x.png',
+    'spinner-clear':'spinner-clear@2x.png',
+    // 音效
+    'normal-hitnormal':'normal-hitnormal.wav','normal-hitclap':'normal-hitclap.wav',
+    'normal-hitwhistle':'normal-hitwhistle.wav','normal-hitfinish':'normal-hitfinish.wav',
+    'soft-hitnormal':'soft-hitnormal.wav','soft-hitclap':'soft-hitclap.wav',
+    'soft-hitwhistle':'soft-hitwhistle.wav','soft-hitfinish':'soft-hitfinish.wav',
+    'drum-hitnormal':'drum-hitnormal.wav','drum-hitclap':'drum-hitclap.wav',
+    'drum-hitwhistle':'drum-hitwhistle.wav','drum-hitfinish':'drum-hitfinish.wav',
+    'normal-slidertick':'normal-slidertick.wav',
+    'combobreak':'combobreak.mp3','spinnerbonus':'spinnerbonus.wav','spinnerspin':'spinnerspin.wav',
+    'sectionpass':'sectionpass.mp3','sectionfail':'sectionfail.mp3','failsound':'failsound.mp3',
+    'applause':'applause.mp3','menuclick':'menuclick.wav','menuhit':'menuhit.wav','menuback':'menuback.wav'
+  }
+};
+
+// 获取资源的完整路径：优先 currentSkin，回退 DEFAULT_SKIN
+function skinPath(logicalName) {
+  if (currentSkin && SKIN_FILE_MAP[currentSkin] && SKIN_FILE_MAP[currentSkin][logicalName]) {
+    return SKINS_ROOT + currentSkin + '/' + SKIN_FILE_MAP[currentSkin][logicalName];
+  }
+  const def = SKIN_FILE_MAP[DEFAULT_SKIN];
+  if (def && def[logicalName]) return SKINS_ROOT + DEFAULT_SKIN + '/' + def[logicalName];
+  return null;
+}
+
+// 需要预加载的图片逻辑名
+const SKIN_IMG_NAMES = [
+  'hitcircle','hitcircleoverlay','approachcircle',
+  'default-0','default-1','default-2','default-3','default-4',
+  'default-5','default-6','default-7','default-8','default-9',
+  'sliderb0','sliderb1','sliderb2','sliderb3','sliderb4','sliderb5','sliderb6','sliderb7','sliderb8','sliderb9','sliderfollowcircle','reversearrow',
+  'cursor','cursortrail','cursormiddle',
+  'hit0','hit50','hit100','hit300','hit300g','hit300k','hit100k',
+  'spinner-circle','spinner-approachcircle','spinner-clear'
+];
+
+function loadSkin() {
+  return new Promise(resolve => {
+    let loaded = 0; const total = SKIN_IMG_NAMES.length;
+    const done = () => { loaded++; if (loaded >= total) resolve(); };
+    for (const name of SKIN_IMG_NAMES) {
+      const url = skinPath(name);
+      if (!url) { done(); continue; }
+      const img = new Image(); img.src = url;
+      img.onload = () => { Skin.img[name] = img; done(); };
+      img.onerror = () => { console.warn('皮肤图片缺失:', name, url); done(); };
+    }
+  });
+}
+
+// 获取皮肤图片，未加载到返回 null（不画）
+function sI(name) { return Skin.img[name] || null; }
+
+// 为 combo color 创建染色 hitcircle / approachcircle
+function tintImage(img, r, g, b) {
+  const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+  const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+  x.globalCompositeOperation = 'multiply';
+  x.fillStyle = `rgb(${r},${g},${b})`; x.fillRect(0, 0, c.width, c.height);
+  x.globalCompositeOperation = 'destination-in'; x.drawImage(img, 0, 0);
+  return c;
+}
+
+function buildTintCache(colours) {
+  Skin.tinted = { hitcircle: [], approachcircle: [] };
+  const hc = sI('hitcircle'), ac = sI('approachcircle');
+  for (const [r, g, b] of colours) {
+    Skin.tinted.hitcircle.push(hc ? tintImage(hc, r, g, b) : null);
+    Skin.tinted.approachcircle.push(ac ? tintImage(ac, r, g, b) : null);
+  }
+}
+
+// ── 音效系统 ──
+const HS = { ctx: null, buf: {}, vol: 1.0 };
+const HITSOUND_NAMES = [
+  'normal-hitnormal','normal-hitclap','normal-hitwhistle','normal-hitfinish',
+  'soft-hitnormal','soft-hitclap','soft-hitwhistle','soft-hitfinish',
+  'drum-hitnormal','drum-hitclap','drum-hitwhistle','drum-hitfinish',
+  'normal-slidertick','combobreak','spinnerbonus','spinnerspin',
+  'sectionpass','sectionfail','failsound','applause','menuclick','menuhit','menuback'
+];
+
+async function initHitSounds() {
+  if (HS.ctx) return;
+  HS.ctx = new (window.AudioContext || window.webkitAudioContext)();
+  await Promise.allSettled(HITSOUND_NAMES.map(async name => {
+    const url = skinPath(name);
+    if (!url) return;
+    try { const r = await fetch(url); const ab = await r.arrayBuffer();
+      HS.buf[name] = await HS.ctx.decodeAudioData(ab);
+    } catch (e) { console.warn('音效加载失败:', name, url); }
+  }));
+}
+
+function playHS(name, volume) {
+  if (!HS.ctx || !HS.buf[name]) return;
+  if (HS.ctx.state === 'suspended') HS.ctx.resume();
+  const src = HS.ctx.createBufferSource(); src.buffer = HS.buf[name];
+  const gain = HS.ctx.createGain(); gain.gain.value = (volume || 1) * HS.vol;
+  src.connect(gain); gain.connect(HS.ctx.destination); src.start();
+}
+
+function playHitSound(hitSoundBits, sampleSet, volume) {
+  const ss = sampleSet || 'normal';
+  playHS(ss + '-hitnormal', volume);
+  if (hitSoundBits & 2) playHS(ss + '-hitwhistle', volume);
+  if (hitSoundBits & 4) playHS(ss + '-hitfinish', volume);
+  if (hitSoundBits & 8) playHS(ss + '-hitclap', volume);
+}
+
+// 页面加载即开始预加载皮肤
+loadSkin();
+
 function parseOsu(text){
   const r={fileFormat:null,general:{},metadata:{},difficulty:{},
     events:{background:null,video:null,breaks:[]},timingPoints:[],colours:[],hitObjects:[]};
@@ -304,16 +333,15 @@ function parseOsu(text){
     if(key==='AudioFilename')r.general.audioFilename=val;
     else if(key==='PreviewTime')r.general.previewTime=parseInt(val);
     else if(key==='Mode')r.general.mode=parseInt(val);
+    else if(key==='SampleSet')r.general.sampleSet=val.toLowerCase();
     else if(key==='StackLeniency')r.general.stackLeniency=parseFloat(val);
     else if(key==='AudioLeadIn')r.general.audioLeadIn=parseInt(val)||0}
+  if(!r.general.sampleSet)r.general.sampleSet='normal';
   if(sections.Metadata)for(const l of sections.Metadata){
     const[k,...v]=l.split(':');const val=v.join(':').trim();const key=k.trim();
-    if(key==='Title')r.metadata.title=val;
-    else if(key==='TitleUnicode')r.metadata.titleUnicode=val;
-    else if(key==='Artist')r.metadata.artist=val;
-    else if(key==='ArtistUnicode')r.metadata.artistUnicode=val;
-    else if(key==='Creator')r.metadata.creator=val;
-    else if(key==='Version')r.metadata.version=val;
+    if(key==='Title')r.metadata.title=val;else if(key==='TitleUnicode')r.metadata.titleUnicode=val;
+    else if(key==='Artist')r.metadata.artist=val;else if(key==='ArtistUnicode')r.metadata.artistUnicode=val;
+    else if(key==='Creator')r.metadata.creator=val;else if(key==='Version')r.metadata.version=val;
     else if(key==='Tags')r.metadata.tags=val.split(' ');
     else if(key==='BeatmapID')r.metadata.beatmapID=parseInt(val);
     else if(key==='BeatmapSetID')r.metadata.beatmapSetID=parseInt(val)}
@@ -328,12 +356,12 @@ function parseOsu(text){
   if(sections.Events)for(const l of sections.Events){
     const bg=l.match(/^0,0,"(.+?)"/);if(bg){r.events.background=bg[1];continue}
     const vid=l.match(/^Video,(-?\d+),"(.+?)"/);
-    if(vid){let fn=vid[2];fn=fn.replace(/\.avi$/i,'.mp4');
-      r.events.video={offset:parseInt(vid[1]),filename:fn};continue}
+    if(vid){let fn=vid[2];fn=fn.replace(/\.avi$/i,'.mp4');r.events.video={offset:parseInt(vid[1]),filename:fn};continue}
     const br=l.match(/^2,(\d+),(\d+)/);if(br)r.events.breaks.push({start:parseInt(br[1]),end:parseInt(br[2])})}
   if(sections.TimingPoints)for(const l of sections.TimingPoints){
-    const p=l.split(',');if(p.length<2)continue;
+    const p=l.split(',');if(p.length<2)continue;const ss=parseInt(p[3])||0;
     const tp={time:parseFloat(p[0]),beatLength:parseFloat(p[1]),meter:parseInt(p[2])||4,
+      sampleSet:ss===1?'normal':ss===2?'soft':ss===3?'drum':null,
       volume:parseInt(p[5])||100,uninherited:(parseInt(p[6])||0)===1,effects:parseInt(p[7])||0};
     if(tp.uninherited){tp.bpm=Math.round(60000/tp.beatLength*100)/100;tp.svMultiplier=1}
     else{tp.bpm=null;tp.svMultiplier=Math.round(-100/tp.beatLength*1000)/1000}
@@ -344,8 +372,7 @@ function parseOsu(text){
   if(r.colours.length===0)r.colours=[[255,128,192],[255,198,170],[255,64,64],[106,213,0]];
   if(sections.HitObjects){let ci=0,cn=1;
     for(const l of sections.HitObjects){const p=l.split(',');if(p.length<4)continue;
-      const x=parseInt(p[0]),y=parseInt(p[1]),time=parseInt(p[2]);
-      const tb=parseInt(p[3]),hs=parseInt(p[4]);
+      const x=parseInt(p[0]),y=parseInt(p[1]),time=parseInt(p[2]),tb=parseInt(p[3]),hs=parseInt(p[4]);
       const isCircle=(tb&1)===1,isSlider=(tb&2)===2,isNewCombo=(tb&4)===4,isSpinner=(tb&8)===8;
       const skip=(tb>>4)&7;if(isNewCombo){ci=(ci+1+skip)%r.colours.length;cn=1}
       const obj={x,y,time,typeBits:tb,hitSound:hs,isCircle,isSlider,isSpinner,isNewCombo,
@@ -358,28 +385,25 @@ function parseOsu(text){
         obj.duration=calcSliderDuration(obj,r);obj.endTime=obj.time+obj.duration}
       else{obj.type='circle';obj.endTime=time}
       r.hitObjects.push(obj)}}
-  r.stats={circles:r.hitObjects.filter(o=>o.type==='circle').length,
-    sliders:r.hitObjects.filter(o=>o.type==='slider').length,
-    spinners:r.hitObjects.filter(o=>o.type==='spinner').length,
-    total:r.hitObjects.length};
+  r.stats={circles:r.hitObjects.filter(o=>o.type==='circle').length,sliders:r.hitObjects.filter(o=>o.type==='slider').length,
+    spinners:r.hitObjects.filter(o=>o.type==='spinner').length,total:r.hitObjects.length};
   const last=r.hitObjects[r.hitObjects.length-1];
-  r.stats.lastObjectTime=last?(last.endTime||last.time):0;
-  r.stats.lengthSeconds=Math.floor(r.stats.lastObjectTime/1000);
+  r.stats.lastObjectTime=last?(last.endTime||last.time):0;r.stats.lengthSeconds=Math.floor(r.stats.lastObjectTime/1000);
   const ar=r.difficulty.ar??5;
   r.difficulty.preempt=ar<5?1200+600*(5-ar)/5:ar===5?1200:1200-750*(ar-5)/5;
   r.difficulty.fadeIn=ar<5?800+400*(5-ar)/5:ar===5?800:800-500*(ar-5)/5;
   r.difficulty.circleRadius=54.4-4.48*(r.difficulty.cs??4);
-  const od=r.difficulty.od??5;
-  r.difficulty.hitWindows={hit300:80-6*od,hit100:140-8*od,hit50:200-10*od};
+  const od=r.difficulty.od??5;r.difficulty.hitWindows={hit300:80-6*od,hit100:140-8*od,hit50:200-10*od};
+  for(let i=0;i<r.hitObjects.length;i++){const isLast=i===r.hitObjects.length-1;
+    r.hitObjects[i].isComboEnd=isLast||(!isLast&&r.hitObjects[i+1].isNewCombo)}
   return r}
 function calcSliderDuration(s,bm){const sm=bm.difficulty.sliderMultiplier||1.4;
   const tp=getTPAt(bm.timingPoints,s.time);return Math.round(s.pixelLength/(sm*100*tp.sv)*tp.bl*s.repeat)}
 function getTPAt(tps,time){let bl=375,sv=1;for(const t of tps){if(t.time>time)break;
   if(t.uninherited){bl=t.beatLength;sv=1}else sv=t.svMultiplier}return{bl,sv}}
+function getSSAt(bm,time){let ss=bm.general.sampleSet;
+  for(const t of bm.timingPoints){if(t.time>time)break;if(t.sampleSet)ss=t.sampleSet}return ss}
 
-// ══════════════════════════════════════════════
-//  2. 滑条路径
-// ══════════════════════════════════════════════
 function computeSliderPath(s){const pts=s.controlPoints;let raw;
   switch(s.curveType){case'L':raw=linearPath(pts);break;case'P':raw=pts.length===3?perfectPath(pts):bezierPath(pts);break;
     case'B':raw=bezierPath(pts);break;default:raw=linearPath(pts)}return truncatePath(raw,s.pixelLength)}
@@ -403,981 +427,536 @@ function deCasteljau(pts,t){let p=pts.map(p=>({x:p.x,y:p.y}));
   while(p.length>1){const n=[];for(let i=0;i<p.length-1;i++)n.push({x:p[i].x+(p[i+1].x-p[i].x)*t,y:p[i].y+(p[i+1].y-p[i].y)*t});p=n}return p[0]}
 function truncatePath(path,length){if(path.length<2)return path;const o=[path[0]];let d=0;
   for(let i=1;i<path.length;i++){const dd=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);
-    if(d+dd>=length){const rem=length-d;const f=rem/dd;
-      o.push({x:path[i-1].x+(path[i].x-path[i-1].x)*f,y:path[i-1].y+(path[i].y-path[i-1].y)*f});break}d+=dd;o.push(path[i])}return o}
+    if(d+dd>=length){const rem=length-d;const f=rem/dd;o.push({x:path[i-1].x+(path[i].x-path[i-1].x)*f,y:path[i-1].y+(path[i].y-path[i-1].y)*f});break}d+=dd;o.push(path[i])}return o}
 function getSliderPosAt(path,t){if(!path||path.length<2)return path?path[0]:{x:0,y:0};
   let tot=0;for(let i=1;i<path.length;i++)tot+=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);
   let tgt=t*tot,acc=0;for(let i=1;i<path.length;i++){const d=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);
     if(acc+d>=tgt){const f=(tgt-acc)/d;return{x:path[i-1].x+(path[i].x-path[i-1].x)*f,y:path[i-1].y+(path[i].y-path[i-1].y)*f}}acc+=d}return path[path.length-1]}
 
-// ══════════════════════════════════════════════
-//  3. 音乐预览系统
-// ══════════════════════════════════════════════
-const Preview = {
-  audio: null,       // HTML5 Audio 元素
-  fadeTimer: null,    // 淡入淡出定时器
-  currentFolder: null,// 当前预览的文件夹（用于判断是否需要重新加载）
-  currentFile: null,  // 当前预览的音频文件名
-  volume: 0,         // 当前音量（用于淡入淡出）
-  targetVolume: 0.5, // 目标音量
-};
+const Preview={audio:null,fadeTimer:null,currentFolder:null,currentFile:null,volume:0,targetVolume:0.5};
+function startPreview(bm){const folder=bm._folder,file=bm.general.audioFilename,pt=(bm.general.previewTime||0)/1000;
+  if(Preview.audio&&Preview.currentFolder===folder&&Preview.currentFile===file)return;stopPreview();
+  const audio=new Audio(folder+'/'+file);audio.loop=false;audio.volume=0;
+  Preview.audio=audio;Preview.currentFolder=folder;Preview.currentFile=file;Preview.volume=0;
+  audio.addEventListener('loadedmetadata',()=>{audio.currentTime=Math.max(0,pt);audio.play().catch(()=>{});
+    clearInterval(Preview.fadeTimer);Preview.fadeTimer=setInterval(()=>{Preview.volume=Math.min(Preview.volume+0.02,Preview.targetVolume);
+      if(Preview.audio)Preview.audio.volume=Preview.volume;if(Preview.volume>=Preview.targetVolume)clearInterval(Preview.fadeTimer)},20)},{once:true});
+  audio.addEventListener('ended',()=>{audio.currentTime=Math.max(0,pt);audio.play().catch(()=>{})})}
+function fadeOutAndStop(cb){clearInterval(Preview.fadeTimer);if(!Preview.audio){if(cb)cb();return}
+  Preview.fadeTimer=setInterval(()=>{Preview.volume=Math.max(Preview.volume-0.04,0);
+    if(Preview.audio)Preview.audio.volume=Preview.volume;
+    if(Preview.volume<=0){clearInterval(Preview.fadeTimer);if(Preview.audio){Preview.audio.pause();Preview.audio.src='';Preview.audio=null}
+      Preview.currentFolder=null;Preview.currentFile=null;if(cb)cb()}},20)}
+function stopPreview(){clearInterval(Preview.fadeTimer);if(Preview.audio){Preview.audio.pause();Preview.audio.src='';Preview.audio=null}
+  Preview.currentFolder=null;Preview.currentFile=null;Preview.volume=0}
 
-function startPreview(bm) {
-  const folder = bm._folder;
-  const file = bm.general.audioFilename;
-  const previewTime = (bm.general.previewTime || 0) / 1000; // 转为秒
-
-  // 如果是同一首歌的同一个音频文件，不需要重新加载
-  if (Preview.audio && Preview.currentFolder === folder && Preview.currentFile === file) {
-    return;
-  }
-
-  // 先停掉之前的预览
-  stopPreview();
-
-  const audio = new Audio(folder + '/' + file);
-  audio.loop = false;
-  audio.volume = 0;
-  Preview.audio = audio;
-  Preview.currentFolder = folder;
-  Preview.currentFile = file;
-  Preview.volume = 0;
-
-  audio.addEventListener('loadedmetadata', () => {
-    // 设置到预览时间点
-    audio.currentTime = Math.max(0, previewTime);
-    audio.play().catch(() => {});
-    // 淡入
-    fadeIn();
-  }, { once: true });
-
-  // 音频播放到末尾时，循环回预览点
-  audio.addEventListener('ended', () => {
-    audio.currentTime = Math.max(0, previewTime);
-    audio.play().catch(() => {});
-  });
-}
-
-function fadeIn() {
-  clearInterval(Preview.fadeTimer);
-  Preview.fadeTimer = setInterval(() => {
-    Preview.volume = Math.min(Preview.volume + 0.02, Preview.targetVolume);
-    if (Preview.audio) Preview.audio.volume = Preview.volume;
-    if (Preview.volume >= Preview.targetVolume) clearInterval(Preview.fadeTimer);
-  }, 20); // 20ms * 25步 ≈ 500ms 淡入
-}
-
-function fadeOutAndStop(callback) {
-  clearInterval(Preview.fadeTimer);
-  if (!Preview.audio) { if (callback) callback(); return; }
-  Preview.fadeTimer = setInterval(() => {
-    Preview.volume = Math.max(Preview.volume - 0.04, 0);
-    if (Preview.audio) Preview.audio.volume = Preview.volume;
-    if (Preview.volume <= 0) {
-      clearInterval(Preview.fadeTimer);
-      if (Preview.audio) {
-        Preview.audio.pause();
-        Preview.audio.src = '';
-        Preview.audio = null;
-      }
-      Preview.currentFolder = null;
-      Preview.currentFile = null;
-      if (callback) callback();
-    }
-  }, 20); // 20ms * 12.5步 ≈ 250ms 淡出
-}
-
-function stopPreview() {
-  clearInterval(Preview.fadeTimer);
-  if (Preview.audio) {
-    Preview.audio.pause();
-    Preview.audio.src = '';
-    Preview.audio = null;
-  }
-  Preview.currentFolder = null;
-  Preview.currentFile = null;
-  Preview.volume = 0;
-}
-
-// ══════════════════════════════════════════════
-//  4. 列表
-// ══════════════════════════════════════════════
-const containerEl=document.getElementById('container');const loadingState=document.getElementById('loadingState');
-let allBeatmaps=[];
-async function init(){
-  try{const res=await fetch('maps.json');const maps=await res.json();
-    if(!maps.length){showEmpty();return}
-    const songGroups=[];
-    for(const entry of maps){
-      const osuEntries=Array.isArray(entry.osu)?entry.osu:
-        (typeof entry.osu==='string'?[{file:entry.osu,stars:0}]:[entry.osu]);
-      const diffs=[];
-      for(const oe of osuEntries){const file=typeof oe==='string'?oe:oe.file;
-        const stars=typeof oe==='object'?oe.stars||0:0;
-        try{const r=await fetch(entry.folder+'/'+file);const text=await r.text();
-          const parsed=parseOsu(text);parsed._folder=entry.folder;parsed._osuFile=file;
-          parsed._stars=stars;
+const containerEl=document.getElementById('container'),loadingState=document.getElementById('loadingState');
+let allBeatmaps=[],expandedGroup=-1,selectedDiff=null;
+async function init(){try{const res=await fetch('maps.json');const maps=await res.json();
+    if(!maps.length){showEmpty();return}const songGroups=[];
+    for(const entry of maps){const osuEntries=Array.isArray(entry.osu)?entry.osu:(typeof entry.osu==='string'?[{file:entry.osu,stars:0}]:[entry.osu]);
+      const diffs=[];for(const oe of osuEntries){const file=typeof oe==='string'?oe:oe.file;const stars=typeof oe==='object'?oe.stars||0:0;
+        try{const r=await fetch(entry.folder+'/'+file);const text=await r.text();const parsed=parseOsu(text);
+          parsed._folder=entry.folder;parsed._osuFile=file;parsed._stars=stars;
           for(const obj of parsed.hitObjects)if(obj.type==='slider')obj._path=computeSliderPath(obj);
           diffs.push(parsed)}catch(e){console.warn('跳过:',entry.folder+'/'+file,e)}}
-      if(diffs.length>0){diffs.sort((a,b)=>(a._stars||0)-(b._stars||0));
-        songGroups.push({folder:entry.folder,diffs})}}
-    allBeatmaps=songGroups;loadingState.style.display='none';
-    if(!songGroups.length){showEmpty();return}renderList(songGroups);
+      if(diffs.length>0){diffs.sort((a,b)=>(a._stars||0)-(b._stars||0));songGroups.push({folder:entry.folder,diffs})}}
+    allBeatmaps=songGroups;loadingState.style.display='none';if(!songGroups.length){showEmpty();return}renderList(songGroups)
   }catch(e){loadingState.innerHTML='<i class="fas fa-exclamation-triangle"></i> 加载失败: '+e.message}}
-function showEmpty(){loadingState.style.display='none';
-  containerEl.innerHTML='<div class="empty-state"><i class="far fa-folder-open"></i><div>暂无谱面</div></div>'}
-let expandedGroup=-1;
-let selectedDiff=null;
-
-function renderList(groups){
-  let h='';
-  groups.forEach((group,gi)=>{
-    const isMulti=group.diffs.length>1;
-    const first=group.diffs[0];const m=first.metadata;
-    const title=m.titleUnicode||m.title||'?';
-    const artist=m.artistUnicode||m.artist||'?';
+function showEmpty(){loadingState.style.display='none';containerEl.innerHTML='<div class="empty-state"><i class="far fa-folder-open"></i><div>暂无谱面</div></div>'}
+function renderList(groups){let h='';groups.forEach((group,gi)=>{const isMulti=group.diffs.length>1;const first=group.diffs[0];const m=first.metadata;
+    const title=m.titleUnicode||m.title||'?',artist=m.artistUnicode||m.artist||'?';
     const bg=first.events.background?group.folder+'/'+first.events.background:'';
-    const cls=isMulti?'sg-multi':'sg-single';
-    const stars=first._stars||0;
-    const singleBgColor=isMulti?'':`background:${getStarBgColor(stars)}`;
-
+    const cls=isMulti?'sg-multi':'sg-single';const stars=first._stars||0;const sbc=isMulti?'':`background:${getStarBgColor(stars)}`;
     h+=`<div class="song-group ${cls}" style="animation-delay:${gi*0.05}s" id="sg-${gi}">`;
-
-    // 主卡片
-    h+=`<div class="sg-card" id="sgc-${gi}" onclick="${isMulti?`toggleGroup(${gi})`:`handleSingleClick(${gi})`}">
+    h+=`<div class="sg-card"id="sgc-${gi}"onmouseenter="playHS('menuclick',0.3)"onclick="${isMulti?`toggleGroup(${gi})`:`handleSingleClick(${gi})`}">
       <div class="sg-thumb" style="background-image:url('${bg}')"></div>
-      <div class="sg-body" ${!isMulti?`style="${singleBgColor}"`:''}">
-        <div class="sg-title">${esc(title)}</div>
-        <div class="sg-sub">${esc(artist)} // ${esc(m.creator||'?')}</div>`;
-
-    if(!isMulti){
-      h+=`<div class="sg-diff-name">${esc(first.metadata.version||'Normal')}</div>
-        <div class="sg-stars">${renderStars(stars)}</div>`;
-    }
-    if(isMulti){
-      h+=`<div class="sg-arrow" id="arrow-${gi}"><i class="fas fa-chevron-down"></i></div>`;
-    }
-    h+=`</div></div>`; // close sg-body, sg-card
-
-    // 难度列表
-    if(isMulti){
-      h+=`<div class="diff-list" id="dlist-${gi}">`;
-      group.diffs.forEach((bm,di)=>{
-        const dStars=bm._stars||0;const d=bm.difficulty;const dm=bm.metadata;
-        const dBg=bm.events.background?group.folder+'/'+bm.events.background:bg;
-        const dTitle=dm.titleUnicode||dm.title||title;
-        const dArtist=dm.artistUnicode||dm.artist||artist;
-        h+=`<div class="diff-card" id="dc-${gi}-${di}" onclick="event.stopPropagation();handleDiffClick(${gi},${di})">
-          <div class="sg-thumb" style="background-image:url('${dBg}')"></div>
-          <div class="sg-body">
-            <div class="sg-title">${esc(dTitle)}</div>
-            <div class="sg-sub">${esc(dArtist)} // ${esc(dm.creator||'?')}</div>
-            <div class="sg-diff-name">${esc(dm.version||'Normal')}</div>
-            <div class="sg-stars">${renderStars(dStars)}</div>
-          </div>
-        </div>`;
-      });
-      h+=`</div>`;
-    }
-    h+=`</div>`; // close song-group
-  });
-  containerEl.innerHTML=h;
-  if(expandedGroup>=0)openGroupDOM(expandedGroup);
-  if(selectedDiff)openDiffDOM(selectedDiff.gi,selectedDiff.di);
-}
-
-// 单难度卡片点击
-function handleSingleClick(gi){
-  if(selectedDiff&&selectedDiff.gi===gi&&selectedDiff.di===0){
-    // 已选中再点 → 开始游戏
-    playBeatmap(gi,0);return;
-  }
-  if(selectedDiff)closeDiffDOM(selectedDiff.gi,selectedDiff.di);
-  if(expandedGroup>=0){closeGroupDOM(expandedGroup);expandedGroup=-1}
-  selectedDiff={gi,di:0};
-  // 高亮主卡片
-  const card=document.getElementById('sgc-'+gi);
-  if(card)card.classList.add('selected');
-  showInfoPanel(gi,0);
-}
-
-// 多难度子卡片点击
-function handleDiffClick(gi,di){
-  if(selectedDiff&&selectedDiff.gi===gi&&selectedDiff.di===di){
-    // 已选中再点 → 开始游戏
-    playBeatmap(gi,di);return;
-  }
-  if(selectedDiff)closeDiffDOM(selectedDiff.gi,selectedDiff.di);
-  selectedDiff={gi,di};
-  openDiffDOM(gi,di);
-}
-
-function toggleGroup(gi){
-  if(expandedGroup===gi){
-    closeGroupDOM(gi);expandedGroup=-1;
+      <div class="sg-body" ${!isMulti?`style="${sbc}"`:''}"><div class="sg-title">${esc(title)}</div><div class="sg-sub">${esc(artist)} // ${esc(m.creator||'?')}</div>`;
+    if(!isMulti)h+=`<div class="sg-diff-name">${esc(first.metadata.version||'Normal')}</div><div class="sg-stars">${renderStars(stars)}</div>`;
+    if(isMulti)h+=`<div class="sg-arrow" id="arrow-${gi}"><i class="fas fa-chevron-down"></i></div>`;
+    h+=`</div></div>`;if(isMulti){h+=`<div class="diff-list" id="dlist-${gi}">`;
+      group.diffs.forEach((bm,di)=>{const dS=bm._stars||0,dm=bm.metadata;const dBg=bm.events.background?group.folder+'/'+bm.events.background:bg;
+        h+=`<div class="diff-card"id="dc-${gi}-${di}"onmouseenter="playHS('menuclick',0.3)"onclick="event.stopPropagation();handleDiffClick(${gi},${di})">
+          <div class="sg-thumb" style="background-image:url('${dBg}')"></div><div class="sg-body">
+          <div class="sg-title">${esc(dm.titleUnicode||dm.title||title)}</div>
+          <div class="sg-sub">${esc(dm.artistUnicode||dm.artist||artist)} // ${esc(dm.creator||'?')}</div>
+          <div class="sg-diff-name">${esc(dm.version||'Normal')}</div><div class="sg-stars">${renderStars(dS)}</div></div></div>`});h+=`</div>`}
+    h+=`</div>`});containerEl.innerHTML=h}
+function handleSingleClick(gi){if(selectedDiff&&selectedDiff.gi===gi&&selectedDiff.di===0){playBeatmap(gi,0);return}
+  const nb=allBeatmaps[gi].diffs[0];const sa=selectedDiff&&Preview.currentFolder===nb._folder&&Preview.currentFile===nb.general.audioFilename;
+  if(selectedDiff)closeDiffDOM(selectedDiff.gi,selectedDiff.di,sa);if(expandedGroup>=0){closeGroupDOM(expandedGroup);expandedGroup=-1}
+  selectedDiff={gi,di:0};const card=document.getElementById('sgc-'+gi);if(card)card.classList.add('selected');showInfoPanel(gi,0)}
+function handleDiffClick(gi,di){if(selectedDiff&&selectedDiff.gi===gi&&selectedDiff.di===di){playBeatmap(gi,di);return}
+  const nb=allBeatmaps[gi].diffs[di];const sa=selectedDiff&&Preview.currentFolder===nb._folder&&Preview.currentFile===nb.general.audioFilename;
+  if(selectedDiff)closeDiffDOM(selectedDiff.gi,selectedDiff.di,sa);selectedDiff={gi,di};openDiffDOM(gi,di)}
+function toggleGroup(gi){playHS('menuhit',0.6);if(expandedGroup===gi){closeGroupDOM(gi);expandedGroup=-1;
     document.body.style.backgroundImage='url("/image/background.webp")';
-    if(selectedDiff&&selectedDiff.gi===gi){closeDiffDOM(selectedDiff.gi,selectedDiff.di);selectedDiff=null;hideInfoPanel()}
-  }else{
-    if(expandedGroup>=0)closeGroupDOM(expandedGroup);
-    if(selectedDiff){closeDiffDOM(selectedDiff.gi,selectedDiff.di);selectedDiff=null;hideInfoPanel()}
-    expandedGroup=gi;openGroupDOM(gi);
-    const first=allBeatmaps[gi].diffs[0];
+    if(selectedDiff&&selectedDiff.gi===gi){closeDiffDOM(selectedDiff.gi,selectedDiff.di);selectedDiff=null;hideInfoPanel()}}
+  else{if(expandedGroup>=0)closeGroupDOM(expandedGroup);if(selectedDiff){closeDiffDOM(selectedDiff.gi,selectedDiff.di);selectedDiff=null;hideInfoPanel()}
+    expandedGroup=gi;openGroupDOM(gi);const first=allBeatmaps[gi].diffs[0];
     const bgUrl=first.events.background?first._folder+'/'+first.events.background:'';
-    if(bgUrl)document.body.style.backgroundImage=`url('${bgUrl}')`;
-    // 展开多难度组时，预览第一个难度的音乐
-    startPreview(first);
-  }
-}
-
-function openGroupDOM(gi){
-  const list=document.getElementById('dlist-'+gi);const arrow=document.getElementById('arrow-'+gi);
-  if(list)list.classList.add('expanded');if(arrow)arrow.classList.add('open')}
-
-function closeGroupDOM(gi){
-  const list=document.getElementById('dlist-'+gi);const arrow=document.getElementById('arrow-'+gi);
-  if(list)list.classList.remove('expanded');if(arrow)arrow.classList.remove('open');
+    if(bgUrl)document.body.style.backgroundImage=`url('${bgUrl}')`;startPreview(first)}}
+function openGroupDOM(gi){const l=document.getElementById('dlist-'+gi),a=document.getElementById('arrow-'+gi);if(l)l.classList.add('expanded');if(a)a.classList.add('open')}
+function closeGroupDOM(gi){const l=document.getElementById('dlist-'+gi),a=document.getElementById('arrow-'+gi);if(l)l.classList.remove('expanded');if(a)a.classList.remove('open');
   if(selectedDiff&&selectedDiff.gi===gi){closeDiffDOM(gi,selectedDiff.di);selectedDiff=null;hideInfoPanel()}}
-
-function openDiffDOM(gi,di){
-  const card=document.getElementById('dc-'+gi+'-'+di);
-  if(card)card.classList.add('selected');
-  showInfoPanel(gi,di)}
-
-function closeDiffDOM(gi,di){
-  const card=document.getElementById('dc-'+gi+'-'+di);
-  if(card)card.classList.remove('selected');
-  // 也清单难度主卡片的选中状态
-  const sgc=document.getElementById('sgc-'+gi);
-  if(sgc)sgc.classList.remove('selected');
-  hideInfoPanel()}
-
-function playBeatmap(gi,di){onMapClick(allBeatmaps[gi].diffs[di])}
-
-// ── 信息面板 ──
-function showInfoPanel(gi,di){
-  const bm=allBeatmaps[gi].diffs[di];const m=bm.metadata;const d=bm.difficulty;const s=bm.stats;
-  const stars=bm._stars||0;const title=m.titleUnicode||m.title;const artist=m.artistUnicode||m.artist;
+function openDiffDOM(gi,di){const c=document.getElementById('dc-'+gi+'-'+di);if(c)c.classList.add('selected');showInfoPanel(gi,di)}
+function closeDiffDOM(gi,di,keepAudio){const c=document.getElementById('dc-'+gi+'-'+di);if(c)c.classList.remove('selected');
+  const s=document.getElementById('sgc-'+gi);if(s)s.classList.remove('selected');hideInfoPanel(keepAudio)}
+function playBeatmap(gi,di){playHS('menuhit',0.6);onMapClick(allBeatmaps[gi].diffs[di])}
+function showInfoPanel(gi,di){const bm=allBeatmaps[gi].diffs[di],m=bm.metadata,d=bm.difficulty,s=bm.stats,stars=bm._stars||0;
   const panel=document.getElementById('infoPanel');
-  panel.innerHTML=`
-    <div class="ip-title">${esc(artist)} - ${esc(title)} [${esc(m.version||'Normal')}]</div>
+  panel.innerHTML=`<div class="ip-title">${esc(m.artistUnicode||m.artist)} - ${esc(m.titleUnicode||m.title)} [${esc(m.version||'Normal')}]</div>
     <div class="ip-mapper">作者：${esc(m.creator||'?')}</div>
-    <div class="ip-row">
-      <div class="ip-item"><span class="ip-label">长度</span><span class="ip-val">${fmtTime(s.lengthSeconds)}</span></div>
+    <div class="ip-row"><div class="ip-item"><span class="ip-label">长度</span><span class="ip-val">${fmtTime(s.lengthSeconds)}</span></div>
       <div class="ip-item"><span class="ip-label">BPM</span><span class="ip-val">${getBPM(bm)}</span></div>
-      <div class="ip-item"><span class="ip-label">物件数</span><span class="ip-val">${s.total}</span></div>
-    </div>
-    <div class="ip-row">
-      <div class="ip-item"><span class="ip-label">圈数</span><span class="ip-val">${s.circles}</span></div>
-      <div class="ip-item"><span class="ip-label">滑条数</span><span class="ip-val">${s.sliders}</span></div>
-      <div class="ip-item"><span class="ip-label">转盘数</span><span class="ip-val">${s.spinners}</span></div>
-    </div>
+      <div class="ip-item"><span class="ip-label">物件数</span><span class="ip-val">${s.total}</span></div></div>
+    <div class="ip-row"><div class="ip-item"><span class="ip-label">圈数</span><span class="ip-val">${s.circles}</span></div>
+      <div class="ip-item"><span class="ip-label">滑条</span><span class="ip-val">${s.sliders}</span></div>
+      <div class="ip-item"><span class="ip-label">转盘</span><span class="ip-val">${s.spinners}</span></div></div>
     <div class="ip-divider"></div>
-    <div class="ip-row">
-      <div class="ip-item"><span class="ip-label">CS</span><span class="ip-val">${d.cs??'?'}</span></div>
+    <div class="ip-row"><div class="ip-item"><span class="ip-label">CS</span><span class="ip-val">${d.cs??'?'}</span></div>
       <div class="ip-item"><span class="ip-label">AR</span><span class="ip-val">${d.ar??'?'}</span></div>
       <div class="ip-item"><span class="ip-label">OD</span><span class="ip-val">${d.od??'?'}</span></div>
       <div class="ip-item"><span class="ip-label">HP</span><span class="ip-val">${d.hp??'?'}</span></div>
-      <div class="ip-item"><span class="ip-label">Star Rating</span><span class="ip-val">${stars.toFixed(2)}★</span></div>
-    </div>`;
-  panel.classList.add('show');
-  // 换页面背景
-  const bgUrl=bm.events.background?bm._folder+'/'+bm.events.background:'';
-  if(bgUrl){document.body.style.backgroundImage=`url('${bgUrl}')`}
-  // 开始音乐预览
-  startPreview(bm);
-}
-
-function hideInfoPanel(){
-  document.getElementById('infoPanel').classList.remove('show');
-  document.body.style.backgroundImage='url("/image/background.webp")';
-  // 淡出停止预览
-  fadeOutAndStop();
-}
-
-// ── 星星渲染 ──
-function renderStars(stars){
-  stars=Math.min(stars,10);const full=Math.floor(stars);const partial=stars-full;
-  const empty=10-full-(partial>0?1:0);let h='';
+      <div class="ip-item"><span class="ip-label">Stars</span><span class="ip-val">${stars.toFixed(2)}★</span></div></div>`;
+  panel.classList.add('show');const bgUrl=bm.events.background?bm._folder+'/'+bm.events.background:'';
+  if(bgUrl)document.body.style.backgroundImage=`url('${bgUrl}')`;startPreview(bm)}
+function hideInfoPanel(keepAudio){document.getElementById('infoPanel').classList.remove('show');
+  document.body.style.backgroundImage='url("/image/background.webp")';if(!keepAudio)fadeOutAndStop()}
+function renderStars(stars){stars=Math.min(stars,10);const full=Math.floor(stars),partial=stars-full,empty=10-full-(partial>0?1:0);let h='';
   for(let i=0;i<full;i++)h+='<span class="star-full">★</span>';
-  if(partial>0){const pct=Math.round(partial*100);
-    h+=`<span class="star-partial">★<span class="star-partial-fill" style="width:${pct}%">★</span></span>`}
-  for(let i=0;i<empty;i++)h+='<span class="star-empty">★</span>';
-  return h}
-
-function getStarColor(stars){
-  if(stars<=1.5)return'#88d840';if(stars<=2.5)return'#4fc3f7';if(stars<=3.75)return'#ffd740';
-  if(stars<=5.25)return'#ff6090';if(stars<=6.75)return'#ff4444';return'#bf40ff'}
-
-function getStarBgColor(stars){
-  if(stars<=1.5)return'rgba(80,180,50,0.8)';
-  if(stars<=2.5)return'rgba(50,120,210,0.8)';
-  if(stars<=3.75)return'rgba(200,160,30,0.8)';
-  if(stars<=5.25)return'rgba(210,70,110,0.8)';
-  if(stars<=6.75)return'rgba(200,40,40,0.8)';
-  return'rgba(150,40,220,0.8)'}
+  if(partial>0)h+=`<span class="star-partial">★<span class="star-partial-fill" style="width:${Math.round(partial*100)}%">★</span></span>`;
+  for(let i=0;i<empty;i++)h+='<span class="star-empty">★</span>';return h}
+function getStarBgColor(s){if(s<=1.5)return'rgba(80,180,50,0.8)';if(s<=2.5)return'rgba(50,120,210,0.8)';if(s<=3.75)return'rgba(200,160,30,0.8)';
+  if(s<=5.25)return'rgba(210,70,110,0.8)';if(s<=6.75)return'rgba(200,40,40,0.8)';return'rgba(150,40,220,0.8)'}
 function getBPM(bm){const rl=bm.timingPoints.filter(t=>t.uninherited);if(!rl.length)return'?';
-  if(rl.length===1)return rl[0].bpm;const bpms=rl.map(t=>t.bpm),mn=Math.min(...bpms),mx=Math.max(...bpms);return mn===mx?mn:mn+'-'+mx}
+  if(rl.length===1)return rl[0].bpm;const b=rl.map(t=>t.bpm),mn=Math.min(...b),mx=Math.max(...b);return mn===mx?mn:mn+'-'+mx}
 function fmtTime(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
-// ══════════════════════════════════════════════
-//  5. 游戏引擎
-// ══════════════════════════════════════════════
-const G={
-  state:'list', bm:null,
-  audioCtx:null, audioBuffer:null, audioSource:null, audioStartCtxTime:0,
-  pausedGameTime:0, // 暂停时记录的游戏时间
-  canvas:null, ctx:null, scale:1, offX:0, offY:0,
-  bgImage:null, bgVideo:null, useVideo:true, _videoOffset:0,
-  time:0, score:0, combo:0, maxCombo:0,
-  hits:{300:0, 100:0, 50:0, miss:0},
-  objState:[], // { judged, result, hitTime, sliderTracking }
-  effects:[], // 判定效果
-  mouseX:0, mouseY:0, mouseDown:false, pendingClicks:[],
-  animFrame:null,
-  cursorTrail:[], quickRestartProgress:0, quickRestartActive:false,
-  // Spinner tracking
-  spinnerAngle:0, spinnerLastAngle:null, spinnerRotations:0,
-  sliderBurstEffects:[],
-};
+const G={state:'list',bm:null,audioCtx:null,audioBuffer:null,audioSource:null,audioStartCtxTime:0,
+  pausedGameTime:0,canvas:null,ctx:null,scale:1,offX:0,offY:0,bgImage:null,bgVideo:null,useVideo:true,_videoOffset:0,
+  time:0,score:0,combo:0,maxCombo:0,hits:{300:0,100:0,50:0,miss:0,geki:0,katu:0},
+  objState:[],effects:[],mouseX:0,mouseY:0,mouseDown:false,pendingClicks:[],animFrame:null,
+  cursorTrail:[],clickRipples:[],quickRestartProgress:0,quickRestartActive:false,
+  sliderBurstEffects:[],comboGroupWorst:300,diffMultiplier:0};
+const gameScreen=document.getElementById('gameScreen'),gameCanvas=document.getElementById('gameCanvas'),
+  gamePrompt=document.getElementById('gamePrompt'),promptText=document.getElementById('promptText'),
+  promptSub=document.getElementById('promptSub'),ghudScore=document.getElementById('ghudScore'),
+  ghudAccuracy=document.getElementById('ghudAccuracy'),ghudComboNum=document.getElementById('ghudComboNum'),
+  resultsOverlay=document.getElementById('resultsOverlay'),pauseOverlay=document.getElementById('pauseOverlay');
 
-const gameScreen=document.getElementById('gameScreen');
-const gameCanvas=document.getElementById('gameCanvas');
-const gamePrompt=document.getElementById('gamePrompt');
-const promptText=document.getElementById('promptText');
-const promptSub=document.getElementById('promptSub');
-const ghudScore=document.getElementById('ghudScore');
-const ghudAccuracy=document.getElementById('ghudAccuracy');
-const ghudComboNum=document.getElementById('ghudComboNum');
-const ghudProgress=document.getElementById('ghudProgress');
-const resultsOverlay=document.getElementById('resultsOverlay');
-const pauseOverlay=document.getElementById('pauseOverlay');
-
-// ── 进入游戏 ──
-async function onMapClick(bm){
-  // 停止预览音乐
-  fadeOutAndStop();
-
-  G.bm=bm; G.state='loading';
-  gameScreen.classList.remove('hidden');
-  document.getElementById('topBar').style.display='none';
-  gamePrompt.classList.remove('hidden');
-  promptText.textContent='加载音频中…';
-  promptSub.textContent=(G.bm.metadata.titleUnicode||G.bm.metadata.title)+' ['+G.bm.metadata.version+']';
-  G.canvas=gameCanvas; G.ctx=G.canvas.getContext('2d'); resizeCanvas();
-
-  if(G.bm.events.background){const img=new Image();img.src=G.bm._folder+'/'+G.bm.events.background;
-    img.onload=()=>{G.bgImage=img}}
-
-  G.bgVideo=null;const vEl=document.getElementById('bgVideo');
-  vEl.style.opacity='0';vEl.pause();vEl.removeAttribute('src');
-  if(G.bm.events.video){vEl.src=G.bm._folder+'/'+G.bm.events.video.filename;vEl.load();
-    G.bgVideo=vEl;G._videoOffset=G.bm.events.video.offset||0}
-
+async function onMapClick(bm){fadeOutAndStop();await initHitSounds();
+  G.bm=bm;G.state='loading';gameScreen.classList.remove('hidden');document.getElementById('topBar').style.display='none';
+  gamePrompt.classList.remove('hidden');promptText.textContent='加载音频中…';
+  promptSub.textContent=(bm.metadata.titleUnicode||bm.metadata.title)+' ['+bm.metadata.version+']';
+  G.canvas=gameCanvas;G.ctx=G.canvas.getContext('2d');resizeCanvas();buildTintCache(bm.colours);
+  if(bm.events.background){const img=new Image();img.src=bm._folder+'/'+bm.events.background;img.onload=()=>{G.bgImage=img}}
+  G.bgVideo=null;const vEl=document.getElementById('bgVideo');vEl.style.opacity='0';vEl.pause();vEl.removeAttribute('src');
+  if(bm.events.video){vEl.src=bm._folder+'/'+bm.events.video.filename;vEl.load();G.bgVideo=vEl;G._videoOffset=bm.events.video.offset||0}
   try{G.audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    const resp=await fetch(G.bm._folder+'/'+G.bm.general.audioFilename);
-    const buf=await resp.arrayBuffer();G.audioBuffer=await G.audioCtx.decodeAudioData(buf);
-    G.state='ready';promptText.textContent='点击开始';promptSub.textContent='准备好了吗？'}
-  catch(e){promptText.textContent='音频加载失败';promptSub.textContent=e.message;console.error(e)}}
+    const resp=await fetch(bm._folder+'/'+bm.general.audioFilename);const buf=await resp.arrayBuffer();
+    G.audioBuffer=await G.audioCtx.decodeAudioData(buf);G.state='ready';promptText.textContent='点击开始';promptSub.textContent='准备好了吗？'}
+  catch(e){promptText.textContent='音频加载失败';promptSub.textContent=e.message}}
 
-function startPlaying(){
-  if(G.state!=='ready')return; G.state='playing';
-  gamePrompt.classList.add('hidden'); pauseOverlay.classList.add('hidden');
-  G.diffMultiplier=Math.round(G.bm._stars||0);
-  G.score=0;G.combo=0;G.maxCombo=0;
-  G.hits={300:0,100:0,50:0,miss:0};
+function resetGameState(){G.score=0;G.combo=0;G.maxCombo=0;G.comboGroupWorst=300;
+  G.hits={300:0,100:0,50:0,miss:0,geki:0,katu:0};
   G.objState=G.bm.hitObjects.map(()=>({judged:false,result:null,hitTime:null,sliderTracking:false}));
-  G.effects=[];G.pendingClicks=[];G.spinnerLastAngle=null;G.spinnerRotations=0;
-  G.cursorTrail=[];G.clickRipples=[];G.sliderBurstEffects=[];
+  G.effects=[];G.pendingClicks=[];G.cursorTrail=[];G.clickRipples=[];G.sliderBurstEffects=[];G.quickRestartProgress=0}
 
-  if(G.audioCtx.state==='suspended')G.audioCtx.resume();
-  G.audioSource=G.audioCtx.createBufferSource();
-  G.audioSource.buffer=G.audioBuffer;G.audioSource.connect(G.audioCtx.destination);
-  const firstObjTime=G.bm.hitObjects.length>0?G.bm.hitObjects[0].time:0;
-  const preempt=G.bm.difficulty.preempt;
-  const minLeadIn=Math.max(0,preempt+500-firstObjTime);
-  const leadIn=Math.max(G.bm.general.audioLeadIn||0,minLeadIn);
-  G.audioStartCtxTime=G.audioCtx.currentTime+leadIn/1000;
+function startAudio(){
+  G.audioSource = G.audioCtx.createBufferSource();
+  G.audioSource.buffer = G.audioBuffer;
+  const bgmGain = G.audioCtx.createGain();
+  bgmGain.gain.value = 0.5;
+  G.audioSource.connect(bgmGain);
+  bgmGain.connect(G.audioCtx.destination);
+  
+  const ft = G.bm.hitObjects.length>0 ? G.bm.hitObjects[0].time : 0;
+  const pre = G.bm.difficulty.preempt;
+  const ml = Math.max(0, pre+500-ft), li = Math.max(G.bm.general.audioLeadIn||0, ml);
+  G.audioStartCtxTime = G.audioCtx.currentTime + li/1000;
   G.audioSource.start(G.audioStartCtxTime);
-  G.audioSource.onended=()=>{if(G.state==='playing')setTimeout(endGame,500)};
+  G.audioSource.onended = () => { if(G.state==='playing') setTimeout(endGame, 500) };
+}
 
-  if(G.bgVideo&&G.useVideo){const delay=G._videoOffset||0;G.bgVideo.style.opacity='1';
-    if(delay>=0){G.bgVideo.currentTime=0;setTimeout(()=>{G.bgVideo.play().catch(()=>{})},delay)}
-    else{G.bgVideo.currentTime=Math.abs(delay)/1000;G.bgVideo.play().catch(()=>{})}}
-
+function startPlaying(){if(G.state!=='ready')return;G.state='playing';gamePrompt.classList.add('hidden');pauseOverlay.classList.add('hidden');
+  G.diffMultiplier=Math.round(G.bm._stars||0);resetGameState();
+  if(G.audioCtx.state==='suspended')G.audioCtx.resume();startAudio();
+  if(G.bgVideo&&G.useVideo){const d=G._videoOffset||0;G.bgVideo.style.opacity='1';
+    if(d>=0){G.bgVideo.currentTime=0;setTimeout(()=>{G.bgVideo.play().catch(()=>{})},d)}
+    else{G.bgVideo.currentTime=Math.abs(d)/1000;G.bgVideo.play().catch(()=>{})}}
   G.animFrame=requestAnimationFrame(gameLoop)}
 
-// ── 暂停 ──
-function pauseGame(){
-  if(G.state!=='playing')return; G.state='paused';
-  G.pausedGameTime=G.time;
-  cancelAnimationFrame(G.animFrame);
-  G.audioCtx.suspend();
-  if(G.bgVideo&&!G.bgVideo.paused)G.bgVideo.pause();
-  pauseOverlay.classList.remove('hidden')}
-
-function resumeGame(){
-  if(G.state!=='paused')return; G.state='playing';
-  pauseOverlay.classList.add('hidden');
-  G.audioCtx.resume();
-  if(G.bgVideo&&G.useVideo)G.bgVideo.play().catch(()=>{});
-  G.animFrame=requestAnimationFrame(gameLoop)}
-
-function retryGame(){
-  if(G.state!=='paused'&&G.state!=='ended')return;
-  cancelAnimationFrame(G.animFrame);
-  pauseOverlay.classList.add('hidden');resultsOverlay.classList.add('hidden');
-  try{if(G.audioSource)G.audioSource.stop()}catch(e){}
+function pauseGame(){if(G.state!=='playing')return;G.state='paused';G.pausedGameTime=G.time;
+  cancelAnimationFrame(G.animFrame);G.audioCtx.suspend();if(G.bgVideo&&!G.bgVideo.paused)G.bgVideo.pause();pauseOverlay.classList.remove('hidden')}
+function resumeGame(){if(G.state!=='paused')return;G.state='playing';pauseOverlay.classList.add('hidden');
+  G.audioCtx.resume();if(G.bgVideo&&G.useVideo)G.bgVideo.play().catch(()=>{});G.animFrame=requestAnimationFrame(gameLoop)}
+function retryGame(){if(G.state!=='paused'&&G.state!=='ended')return;
+  cancelAnimationFrame(G.animFrame);pauseOverlay.classList.add('hidden');resultsOverlay.classList.add('hidden');
+  try{if(G.audioSource){G.audioSource.onended=null;G.audioSource.stop()}}catch(e){}
   try{if(G.audioCtx&&G.audioCtx.state==='suspended')G.audioCtx.resume()}catch(e){}
-  // 直接重新创建音频源并播放
-  G.state='playing';
-  gamePrompt.classList.add('hidden');
-  G.score=0;G.combo=0;G.maxCombo=0;
-  G.hits={300:0,100:0,50:0,miss:0};
-  G.objState=G.bm.hitObjects.map(()=>({judged:false,result:null,hitTime:null,sliderTracking:false}));
-  G.effects=[];G.pendingClicks=[];G.spinnerLastAngle=null;G.spinnerRotations=0;
-  G.cursorTrail=[];G.quickRestartProgress=0;G.clickRipples=[];G.sliderBurstEffects=[];
-  G.audioSource=G.audioCtx.createBufferSource();
-  G.audioSource.buffer=G.audioBuffer;G.audioSource.connect(G.audioCtx.destination);
-  const firstObjTime=G.bm.hitObjects.length>0?G.bm.hitObjects[0].time:0;
-  const preempt=G.bm.difficulty.preempt;
-  const minLeadIn=Math.max(0,preempt+500-firstObjTime);
-  const leadIn=Math.max(G.bm.general.audioLeadIn||0,minLeadIn);
-  G.audioStartCtxTime=G.audioCtx.currentTime+leadIn/1000;
-  G.audioSource.start(G.audioStartCtxTime);
-  G.audioSource.onended=()=>{if(G.state==='playing')setTimeout(endGame,500)};
-  if(G.bgVideo&&G.useVideo){G.bgVideo.currentTime=0;G.bgVideo.play().catch(()=>{})}
-  G.animFrame=requestAnimationFrame(gameLoop)}
-
-document.getElementById('pauseResume').addEventListener('click',resumeGame);
-document.getElementById('pauseRetry').addEventListener('click',retryGame);
-document.getElementById('pauseQuit').addEventListener('click',exitGame);
+  G.state='playing';gamePrompt.classList.add('hidden');G.diffMultiplier=Math.round(G.bm._stars||0);resetGameState();startAudio();
+  if(G.bgVideo&&G.useVideo){G.bgVideo.currentTime=0;G.bgVideo.play().catch(()=>{})}G.animFrame=requestAnimationFrame(gameLoop)}
+document.getElementById('pauseResume').addEventListener('click',()=>{  playHS('menuhit', 0.6);  resumeGame()})
+document.getElementById('pauseRetry').addEventListener('click',()=>{  playHS('menuhit', 0.6);  retryGame()})
+document.getElementById('pauseQuit').addEventListener('click',()=>{  playHS('menuback');  exitGame()})
 document.getElementById('rpRetry').addEventListener('click',retryGame);
 document.getElementById('rpBack').addEventListener('click',exitGame);
-document.getElementById('gameBack').addEventListener('click',()=>{
-  if(G.state==='playing')pauseGame();else if(G.state==='paused')resumeGame()});
+document.getElementById('gameBack').addEventListener('click',()=>{playHS('menuback');if(G.state==='playing')pauseGame();else if(G.state==='paused')resumeGame()});
 
-// ── 主循环 ──
-function gameLoop(){
-  if(G.state!=='playing')return;
-  G.time=(G.audioCtx.currentTime-G.audioStartCtxTime)*1000;
-  // 快速重开
-  if(G.quickRestartActive){G.quickRestartProgress+=16/1000; // 约每帧16ms
-    if(G.quickRestartProgress>=1){G.quickRestartActive=false;G.quickRestartProgress=0;retryGame();return}}
-  else{G.quickRestartProgress=Math.max(0,G.quickRestartProgress-16/300)}
-  processInput(); processSliders(); processSpinners(); processMisses();
-  render(); updateHUD();
-  G.animFrame=requestAnimationFrame(gameLoop)}
+function gameLoop(){if(G.state!=='playing')return;G.time=(G.audioCtx.currentTime-G.audioStartCtxTime)*1000;
+  if(G.quickRestartActive){G.quickRestartProgress+=16/1000;if(G.quickRestartProgress>=1){G.quickRestartActive=false;G.quickRestartProgress=0;retryGame();return}}
+  else G.quickRestartProgress=Math.max(0,G.quickRestartProgress-16/300);
+  processInput();processSliders();processSpinners();processMisses();render();updateHUD();G.animFrame=requestAnimationFrame(gameLoop)}
 
-// ── Circle 输入 ──
-function processInput(){
-  const hw=G.bm.difficulty.hitWindows;const cr=G.bm.difficulty.circleRadius;
-  while(G.pendingClicks.length>0){const click=G.pendingClicks.shift();const clickTime=click.time;
-    const ox=(click.x-G.offX)/G.scale;const oy=(click.y-G.offY)/G.scale;
-    let hitIdx=-1;
-    for(let i=0;i<G.bm.hitObjects.length;i++){if(G.objState[i].judged)continue;
-      const obj=G.bm.hitObjects[i];if(obj.type==='spinner')continue;
-      const dt=clickTime-obj.time;if(dt<-hw.hit50)continue;if(dt>hw.hit50)continue;
-      if(Math.hypot(ox-obj.x,oy-obj.y)<=cr){hitIdx=i;break}}
-    if(hitIdx>=0){const dt=Math.abs(G.pendingClicks.length?click.time:clickTime)-Math.abs(G.bm.hitObjects[hitIdx].time);
-      const adt=Math.abs(clickTime-G.bm.hitObjects[hitIdx].time);
-      let result;if(adt<=hw.hit300)result=300;else if(adt<=hw.hit100)result=100;else result=50;
-      const obj=G.bm.hitObjects[hitIdx];
-      if(obj.type==='slider'){G.objState[hitIdx].sliderTracking=true;
-        G.objState[hitIdx].headResult=result;G.objState[hitIdx].headHitTime=clickTime}
-      else judgeHit(hitIdx,result,clickTime)}}}
+function processInput(){const hw=G.bm.difficulty.hitWindows,cr=G.bm.difficulty.circleRadius;
+  while(G.pendingClicks.length>0){const click=G.pendingClicks.shift(),ct=click.time,ox=(click.x-G.offX)/G.scale,oy=(click.y-G.offY)/G.scale;
+    let hi=-1;for(let i=0;i<G.bm.hitObjects.length;i++){if(G.objState[i].judged)continue;const obj=G.bm.hitObjects[i];
+      if(obj.type==='spinner')continue;const dt=ct-obj.time;if(dt<-hw.hit50)continue;if(dt>hw.hit50)continue;
+      if(Math.hypot(ox-obj.x,oy-obj.y)<=cr){hi=i;break}}
+    if(hi>=0){const adt=Math.abs(ct-G.bm.hitObjects[hi].time);let result;
+      if(adt<=hw.hit300)result=300;else if(adt<=hw.hit100)result=100;else result=50;const obj=G.bm.hitObjects[hi];
+      if(obj.type==='slider'){G.objState[hi].sliderTracking=true;G.objState[hi].headResult=result;G.objState[hi].headHitTime=ct}
+      else judgeHit(hi,result,ct)}}}
 
-// ── Slider 判定 ──
-function processSliders(){
-  // 检测松开鼠标时，正在追踪的滑条产生爆炸效果
-  if(G._lastMouseDown&&!G.mouseDown){
-    for(let i=0;i<G.bm.hitObjects.length;i++){
-      const obj=G.bm.hitObjects[i];if(obj.type!=='slider')continue;
-      const st=G.objState[i];if(st.judged||!st.sliderTracking)continue;
-      if(G.time>=obj.time&&G.time<=obj.endTime&&obj._path){
-        const dur=obj.endTime-obj.time;let prog=(G.time-obj.time)/dur;
-        if(obj.repeat>1){const seg=Math.floor(prog*obj.repeat);let lp=prog*obj.repeat-seg;if(seg%2===1)lp=1-lp;prog=lp}
-        prog=Math.max(0,Math.min(1,prog));const bp=getSliderPosAt(obj._path,prog);
-        G.sliderBurstEffects.push({x:bp.x,y:bp.y,born:G.time,startR:G.bm.difficulty.circleRadius*2.5})}}}
-  G._lastMouseDown=G.mouseDown;
-  const cr=G.bm.difficulty.circleRadius;const hw=G.bm.difficulty.hitWindows;
-  const ox=(G.mouseX-G.offX)/G.scale;const oy=(G.mouseY-G.offY)/G.scale;
-  for(let i=0;i<G.bm.hitObjects.length;i++){
-    const obj=G.bm.hitObjects[i];if(obj.type!=='slider')continue;
-    const st=G.objState[i];if(st.judged)continue;
-    if(!st.sliderTracking&&G.time>obj.time+hw.hit50){judgeHit(i,'miss',null);continue}
+function processSliders(){if(G._lastMouseDown&&!G.mouseDown){for(let i=0;i<G.bm.hitObjects.length;i++){
+    const obj=G.bm.hitObjects[i];if(obj.type!=='slider')continue;const st=G.objState[i];if(st.judged||!st.sliderTracking)continue;
+    if(G.time>=obj.time&&G.time<=obj.endTime&&obj._path){const dur=obj.endTime-obj.time;let prog=(G.time-obj.time)/dur;
+      if(obj.repeat>1){const seg=Math.floor(prog*obj.repeat);let lp=prog*obj.repeat-seg;if(seg%2===1)lp=1-lp;prog=lp}
+      prog=Math.max(0,Math.min(1,prog));const bp=getSliderPosAt(obj._path,prog);
+      G.sliderBurstEffects.push({x:bp.x,y:bp.y,born:G.time,startR:G.bm.difficulty.circleRadius*2.5})}}}
+  G._lastMouseDown=G.mouseDown;const cr=G.bm.difficulty.circleRadius,hw=G.bm.difficulty.hitWindows;
+  const ox=(G.mouseX-G.offX)/G.scale,oy=(G.mouseY-G.offY)/G.scale;
+  for(let i=0;i<G.bm.hitObjects.length;i++){const obj=G.bm.hitObjects[i];if(obj.type!=='slider')continue;
+    const st=G.objState[i];if(st.judged)continue;if(!st.sliderTracking&&G.time>obj.time+hw.hit50){judgeHit(i,'miss',null);continue}
     if(!st.sliderTracking)continue;
-    // 检查当前是否还在跟踪
-    if(G.time>=obj.time&&G.time<obj.endTime){
-      const path=obj._path;if(path){
-        const dur=obj.endTime-obj.time;let prog=(G.time-obj.time)/dur;
-        if(obj.repeat>1){const seg=Math.floor(prog*obj.repeat);let lp=prog*obj.repeat-seg;if(seg%2===1)lp=1-lp;prog=lp}
-        prog=Math.max(0,Math.min(1,prog));const bp=getSliderPosAt(path,prog);
-        const inRange=Math.hypot(ox-bp.x,oy-bp.y)<=cr*2.5;
-        // 松手或移出范围 → 断开，记录炸开效果
-        if(!G.mouseDown||!inRange){
-          if(!st.sliderBreakTime){
-            st.sliderBreakTime=G.time;st.sliderBreakPos={x:bp.x,y:bp.y};
-            G.effects.push({type:'followExplode',x:bp.x,y:bp.y,born:G.time,cr:cr})}}
-        else{st.sliderBreakTime=null;st.sliderBreakPos=null}}} // 重新跟上就取消断开
-    // 滑条结束判定
-    if(G.time>=obj.endTime){
-      const headResult=st.headResult||50;
-      // 标记是以跟踪结束还是断开结束
-      if(!st.sliderBreakTime){st.sliderEndTracking=true}
-      // 滑条额外分（不受连击/倍率影响）
-      // 滑条尾/折返：每个30分
-      const repeatHits=obj.repeat; // 头算一次，折返各一次，尾算一次
-      G.score+=30*repeatHits;
-      // 滑条点：简化为按长度估算（每100像素约1个tick）
-      const estimatedTicks=Math.max(0,Math.floor(obj.pixelLength/100)*obj.repeat);
-      G.score+=10*estimatedTicks;
-      judgeHit(i,headResult,G.time);continue}}}
+    if(G.time>=obj.time&&G.time<obj.endTime){const path=obj._path;if(path){const dur=obj.endTime-obj.time;let prog=(G.time-obj.time)/dur;
+      if(obj.repeat>1){const seg=Math.floor(prog*obj.repeat);let lp=prog*obj.repeat-seg;if(seg%2===1)lp=1-lp;prog=lp}
+      prog=Math.max(0,Math.min(1,prog));const bp=getSliderPosAt(path,prog);
+      if(!G.mouseDown||Math.hypot(ox-bp.x,oy-bp.y)>cr*2.5){if(!st.sliderBreakTime)st.sliderBreakTime=G.time}
+      else{st.sliderBreakTime=null}}}
+    if(G.time>=obj.endTime){G.score+=30*obj.repeat+10*Math.max(0,Math.floor(obj.pixelLength/100)*obj.repeat);
+      judgeHit(i,st.headResult||50,G.time)}}}
 
-// ── Spinner 判定 ──
-function processSpinners(){
-  const ox=(G.mouseX-G.offX)/G.scale;const oy=(G.mouseY-G.offY)/G.scale;
-  for(let i=0;i<G.bm.hitObjects.length;i++){
-    const obj=G.bm.hitObjects[i];if(obj.type!=='spinner')continue;
-    const st=G.objState[i];if(st.judged)continue;
-    if(G.time<obj.time)continue;
-    if(G.time>=obj.endTime){
-      // 判定：根据转的圈数
-      const needed=Math.max(1,(obj.duration/1000)*1.5);
-      const rot=st.spinnerRotations||0;
-      let result;if(rot>=needed)result=300;else if(rot>=needed*0.7)result=100;
-      else if(rot>=needed*0.3)result=50;else result='miss';
-      // 转盘额外分（不受连击/倍率影响）
-      const totalRotations=Math.floor(rot);
-      const completedRotations=Math.floor(needed);
-      if(totalRotations>0){
-        const preComplete=Math.min(totalRotations,completedRotations);
-        const postComplete=Math.max(0,totalRotations-completedRotations);
-        G.score+=preComplete*100+postComplete*1100;
-      }
+function processSpinners(){const ox=(G.mouseX-G.offX)/G.scale,oy=(G.mouseY-G.offY)/G.scale;
+  for(let i=0;i<G.bm.hitObjects.length;i++){const obj=G.bm.hitObjects[i];if(obj.type!=='spinner')continue;
+    const st=G.objState[i];if(st.judged)continue;if(G.time<obj.time)continue;
+    if(G.time>=obj.endTime){const needed=Math.max(1,(obj.duration/1000)*1.5),rot=st.spinnerRotations||0;
+      let result;if(rot>=needed)result=300;else if(rot>=needed*0.7)result=100;else if(rot>=needed*0.3)result=50;else result='miss';
+      const tr=Math.floor(rot),cr2=Math.floor(needed);if(tr>0)G.score+=Math.min(tr,cr2)*100+Math.max(0,tr-cr2)*1100;
       judgeHit(i,result,G.time);continue}
-    // 追踪旋转
-    if(G.mouseDown){
-      const cx=256,cy=192;const angle=Math.atan2(oy-cy,ox-cx);
-      if(st.spinnerLastAngle!==undefined&&st.spinnerLastAngle!==null){
-        let delta=angle-st.spinnerLastAngle;
-        if(delta>Math.PI)delta-=2*Math.PI;if(delta<-Math.PI)delta+=2*Math.PI;
-        st.spinnerRotations=(st.spinnerRotations||0)+Math.abs(delta)/(2*Math.PI)}
-      st.spinnerLastAngle=angle}else{st.spinnerLastAngle=null}}}
+    if(G.mouseDown){const angle=Math.atan2(oy-192,ox-256);
+      if(st.spinnerLastAngle!=null){let delta=angle-st.spinnerLastAngle;if(delta>Math.PI)delta-=2*Math.PI;if(delta<-Math.PI)delta+=2*Math.PI;
+        st.spinnerRotations=(st.spinnerRotations||0)+Math.abs(delta)/(2*Math.PI)}st.spinnerLastAngle=angle}else st.spinnerLastAngle=null}}
 
-function processMisses(){
-  const hw=G.bm.difficulty.hitWindows;
-  for(let i=0;i<G.bm.hitObjects.length;i++){if(G.objState[i].judged)continue;
-    const obj=G.bm.hitObjects[i];if(obj.type==='spinner'||obj.type==='slider')continue;
-    if(G.time>obj.time+hw.hit50)judgeHit(i,'miss',null)}}
+function processMisses(){const hw=G.bm.difficulty.hitWindows;
+  for(let i=0;i<G.bm.hitObjects.length;i++){if(G.objState[i].judged)continue;const obj=G.bm.hitObjects[i];
+    if(obj.type==='spinner'||obj.type==='slider')continue;if(G.time>obj.time+hw.hit50)judgeHit(i,'miss',null)}}
 
-function judgeHit(idx,result,time){
-  G.objState[idx].judged=true;G.objState[idx].result=result;G.objState[idx].hitTime=time||G.time;
-  const obj=G.bm.hitObjects[idx];
-  if(result!=='miss'&&result>=50){
-    // osu! 计分公式: 打击分值 * (1 + (max(combo-1,0) * 难度倍率 * 1 / 25))
-    const comboMult=Math.max(G.combo,0); // combo before this hit (combo还没++)
-    const hitScore=Math.round(result*(1+(comboMult*G.diffMultiplier*1/25)));
-    G.score+=hitScore;
-    G.combo++;if(G.combo>G.maxCombo)G.maxCombo=G.combo;
-    G.hits[result]++;
-  }else{
-    G.combo=0;G.hits.miss++;
-  }
-  // 效果
-  const effectX=obj.type==='spinner'?256:obj.x;const effectY=obj.type==='spinner'?192:obj.y;
-  if(result==='miss'){
-    const cycle=((G.time%2000)/2000)*2*Math.PI;const angle=(Math.sin(cycle)*10)*Math.PI/180;
-    G.effects.push({type:'miss',x:effectX,y:effectY,born:G.time,angle})}
-  else{
-    const colors={300:'#64b5f6',100:'#66bb6a',50:'#ffd54f'};
-    G.effects.push({type:'score',x:effectX,y:effectY,born:G.time,text:String(result),
-      color:colors[result]})}}
+function judgeHit(idx,result,time){G.objState[idx].judged=true;G.objState[idx].result=result;G.objState[idx].hitTime=time||G.time;
+  const obj=G.bm.hitObjects[idx];if(obj.isNewCombo)G.comboGroupWorst=300;const ss=getSSAt(G.bm,obj.time);
+  if(result!=='miss'&&result>=50){G.comboGroupWorst=Math.min(G.comboGroupWorst,result);
+    G.score+=Math.round(result*(1+(Math.max(G.combo,0)*G.diffMultiplier/25)));
+    G.combo++;if(G.combo>G.maxCombo)G.maxCombo=G.combo;G.hits[result]++;playHitSound(obj.hitSound,ss,1);
+    let dImg;if(obj.isComboEnd&&G.comboGroupWorst>=100){
+      if(result===300&&G.comboGroupWorst===300){G.hits.geki++;dImg='hit300g'}
+      else{G.hits.katu++;dImg=result===300?'hit300k':'hit100k'}}
+    if(!dImg){if(result===300)dImg='hit300';else if(result===100)dImg='hit100';else dImg='hit50'}
+    const ex=obj.type==='spinner'?256:obj.x,ey=obj.type==='spinner'?192:obj.y;
+    G.effects.push({type:'score',x:ex,y:ey,born:G.time,img:dImg})
+  }else{G.comboGroupWorst=0;if(G.combo>0)playHS('combobreak',1);G.combo=0;G.hits.miss++;
+    const ex=obj.type==='spinner'?256:obj.x,ey=obj.type==='spinner'?192:obj.y;
+    G.effects.push({type:'miss',x:ex,y:ey,born:G.time,angle:(Math.sin((G.time%2000)/2000*2*Math.PI)*10)*Math.PI/180})}}
 
-// ══════════════════════════════════════════════
-//  6. 渲染
-// ══════════════════════════════════════════════
-function render(){
-  const ctx=G.ctx;const W=G.canvas.width,H=G.canvas.height;
-  ctx.clearRect(0,0,W,H);
+function drawImg(ctx,img,cx,cy,w,h,alpha){if(!img)return;ctx.save();ctx.globalAlpha=alpha??1;ctx.drawImage(img,cx-w/2,cy-h/2,w,h);ctx.restore()}
+
+function drawComboNum(ctx,num,cx,cy,cr,alpha){
+  const digits=String(num).split(''),imgs=digits.map(d=>sI('default-'+d));if(!imgs[0])return;
+  const h=cr*1.2,scale=h/imgs[0].height;let totalW=0;for(const im of imgs)if(im)totalW+=im.width*scale;
+  const overlap=cr*0.08;totalW-=overlap*(digits.length-1);let startX=cx-totalW/2;
+  ctx.save();ctx.globalAlpha=alpha;for(const im of imgs){if(!im)continue;const w=im.width*scale;
+    ctx.drawImage(im,startX,cy-h/2,w,h);startX+=w-overlap}ctx.restore()}
+
+function drawCircle(ctx,obj,cr,alpha){const ci=obj.comboIndex,sz=cr*2.1;
+  const tHC=Skin.tinted.hitcircle[ci];if(tHC)drawImg(ctx,tHC,obj.x,obj.y,sz,sz,alpha*0.95);
+  const ov=sI('hitcircleoverlay');if(ov)drawImg(ctx,ov,obj.x,obj.y,sz,sz,alpha);
+  drawComboNum(ctx,obj.comboNumber,obj.x,obj.y,cr,alpha)}
+
+function drawApproach(ctx,obj,cr,aR,alpha){const ci=obj.comboIndex,sz=aR*2.1;
+  const tAC=Skin.tinted.approachcircle[ci];if(tAC)drawImg(ctx,tAC,obj.x,obj.y,sz,sz,alpha*0.9)}
+
+function render(){const ctx=G.ctx,W=G.canvas.width,H=G.canvas.height;ctx.clearRect(0,0,W,H);
   const hasVideo=G.bgVideo&&G.useVideo&&!G.bgVideo.paused;
-  if(!hasVideo){if(G.bgImage){ctx.save();ctx.globalAlpha=1;
-    const s=Math.max(W/G.bgImage.width,H/G.bgImage.height);
-    const iw=G.bgImage.width*s,ih=G.bgImage.height*s;
-    ctx.drawImage(G.bgImage,(W-iw)/2,(H-ih)/2,iw,ih);ctx.restore()}
-    else{ctx.fillStyle='#1a1a2e';ctx.fillRect(0,0,W,H)}}
-  ctx.fillStyle=hasVideo?'rgba(0,0,0,0.6)':'rgba(0,0,0,0.6)';ctx.fillRect(0,0,W,H);
-
+  if(!hasVideo&&G.bgImage){ctx.save();const s=Math.max(W/G.bgImage.width,H/G.bgImage.height);
+    const iw=G.bgImage.width*s,ih=G.bgImage.height*s;ctx.drawImage(G.bgImage,(W-iw)/2,(H-ih)/2,iw,ih);ctx.restore()}
+  ctx.fillStyle='rgba(0,0,0,0.6)';ctx.fillRect(0,0,W,H);
   ctx.save();ctx.translate(G.offX,G.offY);ctx.scale(G.scale,G.scale);
-  const preempt=G.bm.difficulty.preempt;const fadeIn=G.bm.difficulty.fadeIn;
-  const cr=G.bm.difficulty.circleRadius;const time=G.time;
-
-  // 收集可见物件
+  const preempt=G.bm.difficulty.preempt,fadeIn=G.bm.difficulty.fadeIn,cr=G.bm.difficulty.circleRadius,time=G.time;
   const visible=[];
-  for(let i=0;i<G.bm.hitObjects.length;i++){const obj=G.bm.hitObjects[i];const st=G.objState[i];
-    const appearTime=obj.time-preempt;
-    if(time<appearTime)continue;
-    if(st.judged){
-      // 判定后的动画时间
-      const since=time-(st.hitTime||obj.time);
-      if(obj.type==='slider'){if(since>300)continue} // 滑条渐出
-      else if(st.result==='miss'){if(since>100)continue} // miss直接消失
-      else{if(since>200)continue} // hit放大渐出
-    }
+  for(let i=0;i<G.bm.hitObjects.length;i++){const obj=G.bm.hitObjects[i],st=G.objState[i];
+    if(time<obj.time-preempt)continue;
+    if(st.judged){const since=time-(st.hitTime||obj.time);
+      if(obj.type==='slider'){if(since>300)continue}else if(obj.type==='spinner'){continue}
+      else if(st.result==='miss'){if(since>100)continue}else{if(since>200)continue}}
     visible.push({obj,st,idx:i})}
   visible.reverse();
 
-  for(const{obj,st}of visible){
-    const appearTime=obj.time-preempt;
-    const fadeProgress=Math.min((time-appearTime)/fadeIn,1);
-    let alpha=fadeProgress;
-    const[r,g,b]=obj.comboColor;const col=`rgb(${r},${g},${b})`;
+  for(const{obj,st,idx}of visible){const appearTime=obj.time-preempt;
+    const fadeProg=Math.min((time-appearTime)/fadeIn,1);let alpha=fadeProg;
+    const[rv,gv,bv]=obj.comboColor;const col=`rgb(${rv},${gv},${bv})`;
 
-    // ── 已判定物件的动画 ──
-    if(st.judged){
-      const since=time-(st.hitTime||obj.time);
-      if(obj.type==='slider'){
-        // 滑条：渐出
-        alpha=Math.max(0,1-since/300);
-        if(alpha<=0)continue;
-        renderSlider(ctx,obj,cr,col,alpha,time);continue}
-      else if(st.result==='miss'){continue} // miss 直接消失
-      else{
-        // hit：放大渐出
-        const prog=since/200;alpha=Math.max(0,1-prog);
-        const scale=1+prog*0.5;
-        ctx.save();ctx.globalAlpha=alpha;ctx.translate(obj.x,obj.y);ctx.scale(scale,scale);
-        ctx.beginPath();ctx.arc(0,0,cr,0,Math.PI*2);
-        ctx.fillStyle=col;ctx.globalAlpha=alpha*0.9;ctx.fill();
-        ctx.globalAlpha=alpha;ctx.lineWidth=3;ctx.strokeStyle='#fff';ctx.stroke();
-        ctx.fillStyle='#fff';ctx.font=`bold ${cr*.9}px 'JetBrains Mono',monospace`;
-        ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(obj.comboNumber,0,0);
-        ctx.restore();continue}}
+    if(st.judged){const since=time-(st.hitTime||obj.time);
+      if(obj.type==='slider'){alpha=Math.max(0,1-since/300);if(alpha<=0)continue;renderSlider(ctx,obj,cr,col,alpha,time);continue}
+      if(st.result==='miss')continue;
+      const prog=since/200;alpha=Math.max(0,1-prog);const sc=1+prog*0.5;
+      ctx.save();ctx.translate(obj.x,obj.y);ctx.scale(sc,sc);
+      const sz=cr*2.1;const tHC=Skin.tinted.hitcircle[obj.comboIndex];if(tHC)drawImg(ctx,tHC,0,0,sz,sz,alpha*0.9);
+      const ov=sI('hitcircleoverlay');if(ov)drawImg(ctx,ov,0,0,sz,sz,alpha);
+      drawComboNum(ctx,obj.comboNumber,0,0,cr,alpha);ctx.restore();continue}
 
-    ctx.globalAlpha=alpha;
-
-    // ── Spinner ──
-    if(obj.type==='spinner'){
-      const cx=256,cy=192,sR=120;
-      // 外圈
-      ctx.beginPath();ctx.arc(cx,cy,sR,0,Math.PI*2);
-      ctx.lineWidth=4;ctx.strokeStyle='rgba(255,255,255,0.4)';ctx.stroke();
-      // 进度
-      if(time>=obj.time){const rot=G.objState[visible.find(v=>v.obj===obj).idx].spinnerRotations||0;
-        const needed=Math.max(1,(obj.duration/1000)*1.5);const prog=Math.min(rot/needed,1);
-        ctx.beginPath();ctx.arc(cx,cy,sR,-Math.PI/2,-Math.PI/2+prog*Math.PI*2);
-        ctx.lineWidth=6;ctx.strokeStyle=col;ctx.stroke();
-        // 中心文字
-        ctx.fillStyle='#fff';ctx.font="bold 24px 'ZCOOL KuaiLe',sans-serif";
-        ctx.textAlign='center';ctx.textBaseline='middle';
-        ctx.fillText(Math.floor(prog*100)+'%',cx,cy)}
-      // 缩圈
-      const approachProg=Math.min((time-(obj.time-preempt))/preempt,1);
-      const aR=sR+(sR*2)*(1-approachProg);
-      ctx.beginPath();ctx.arc(cx,cy,aR,0,Math.PI*2);ctx.lineWidth=2;ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.stroke();
+    // Spinner
+    if(obj.type==='spinner'){const cx=256,cy=192,sR=120;const rot=G.objState[idx].spinnerRotations||0;
+      const needed=Math.max(1,(obj.duration/1000)*1.5),prog=Math.min(rot/needed,1);
+      const spinImg=sI('spinner-circle'),spinAC=sI('spinner-approachcircle');
+      if(spinImg&&time>=obj.time){ctx.save();ctx.globalAlpha=alpha;ctx.translate(cx,cy);ctx.rotate(rot*Math.PI*2);
+        const sz=sR*2.2;ctx.drawImage(spinImg,-sz/2,-sz/2,sz,sz);ctx.restore()}
+      if(time>=obj.time){ctx.save();ctx.globalAlpha=alpha;ctx.beginPath();ctx.arc(cx,cy,sR,-Math.PI/2,-Math.PI/2+prog*Math.PI*2);
+        ctx.lineWidth=6;ctx.strokeStyle=col;ctx.stroke();ctx.fillStyle='#fff';
+        ctx.font="bold 24px 'ZCOOL KuaiLe',sans-serif";ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillText(Math.floor(prog*100)+'%',cx,cy);ctx.restore()}
+      const aProg=Math.min((time-appearTime)/preempt,1),aR2=sR+(sR*2)*(1-aProg);
+      if(spinAC)drawImg(ctx,spinAC,cx,cy,aR2*2,aR2*2,alpha*0.5);
+      if(prog>=1){const clr=sI('spinner-clear');if(clr)drawImg(ctx,clr,cx,cy-60,clr.width*0.5,clr.height*0.5,alpha)}
       continue}
 
-    // ── Slider 轨迹 ──
+    // Slider track
     if(obj.type==='slider'&&obj._path)renderSlider(ctx,obj,cr,col,alpha,time);
+    // Circle / Slider head
+    if(obj.type==='circle'||obj.type==='slider'){drawCircle(ctx,obj,cr,alpha);
+      const aProg=Math.min((time-appearTime)/preempt,1),aR=cr+(cr*3)*(1-aProg);drawApproach(ctx,obj,cr,aR,alpha)}}
 
-    // ── Circle / Slider 头 ──
-    if(obj.type==='circle'||obj.type==='slider'){
-      ctx.beginPath();ctx.arc(obj.x,obj.y,cr,0,Math.PI*2);
-      ctx.fillStyle=col;ctx.globalAlpha=alpha*0.9;ctx.fill();
-      ctx.globalAlpha=alpha;ctx.lineWidth=3;ctx.strokeStyle='#fff';ctx.stroke();
-      ctx.fillStyle='#fff';ctx.font=`bold ${cr*.9}px 'JetBrains Mono',monospace`;
-      ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(obj.comboNumber,obj.x,obj.y);
-      // 缩圈
-      const aProg=Math.min((time-appearTime)/preempt,1);const aR=cr+(cr*3)*(1-aProg);
-      ctx.beginPath();ctx.arc(obj.x,obj.y,aR,0,Math.PI*2);ctx.lineWidth=2.5;ctx.strokeStyle=col;ctx.globalAlpha=alpha*.9;ctx.stroke()}}
+  renderEffects(ctx,time);ctx.restore();
+  if(G.quickRestartProgress>0){ctx.globalAlpha=G.quickRestartProgress;ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);ctx.globalAlpha=1}
+  renderCursor(ctx,time,W,H);ctx.globalAlpha=1}
 
-  // ── 判定效果 ──
-  renderEffects(ctx,time);
-  ctx.restore();
-  // 快速重开黑幕
-  if(G.quickRestartProgress>0){
-    ctx.globalAlpha=G.quickRestartProgress;ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);ctx.globalAlpha=1}
-  renderCursor(ctx,time,W,H);
-  ctx.globalAlpha=1}
+function renderSlider(ctx, obj, cr, col, alpha, time) {
+  const path = obj._path;
+  if (!path || path.length < 2) return;
 
-function renderSlider(ctx,obj,cr,col,alpha,time){
-  const path=obj._path;if(!path||path.length<2)return;
-  ctx.save();ctx.globalAlpha=alpha*.6;ctx.lineWidth=cr*2;ctx.lineCap='round';ctx.lineJoin='round';
-  ctx.strokeStyle=col;ctx.beginPath();ctx.moveTo(path[0].x,path[0].y);
-  for(let i=1;i<path.length;i++)ctx.lineTo(path[i].x,path[i].y);ctx.stroke();
-  ctx.globalAlpha=alpha*.8;ctx.lineWidth=cr*2+4;ctx.strokeStyle='rgba(255,255,255,0.3)';
-  ctx.beginPath();ctx.moveTo(path[0].x,path[0].y);for(let i=1;i<path.length;i++)ctx.lineTo(path[i].x,path[i].y);ctx.stroke();ctx.restore();
-  const endPt=path[path.length-1];
-  if(obj.repeat>1){
-    // 折返箭头：纯白发光圆底 + 黑色箭头
-    ctx.save();ctx.globalAlpha=alpha;
-    ctx.shadowColor='rgba(255,255,255,0.6)';ctx.shadowBlur=12;
-    ctx.beginPath();ctx.arc(endPt.x,endPt.y,cr*.85,0,Math.PI*2);
-    ctx.fillStyle='#fff';ctx.fill();
-    ctx.shadowBlur=0;
+  const trackScale = 0.85;       // 让轨道整体变窄、变短（数值越小越细短）
+  const trackAlpha = alpha * 0.7; // 轨道的整体透明度
+  const baseW = cr * 2 * trackScale;
 
-    // 计算箭头朝向（从倒数第二个点指向终点的反方向，即指回起点）
-    const prev=path.length>=2?path[path.length-2]:path[0];
-    const angle=Math.atan2(prev.y-endPt.y,prev.x-endPt.x);
-    const arrSize=cr*0.55;
-
-    ctx.save();ctx.translate(endPt.x,endPt.y);ctx.rotate(angle);
-    ctx.fillStyle='rgba(0,0,0,0.75)';
-    // 长方形（箭头杆）
-    const barW=arrSize*0.35;const barL=arrSize*0.9;
-    ctx.fillRect(-barL*0.3,-barW/2,barL,barW);
-    // 三角形（箭头头）
+  const [r, g, b] = obj.comboColor;
+  const darkCol  = `rgb(${Math.floor(r*0.6)},${Math.floor(g*0.6)},${Math.floor(b*0.6)})`;
+  const midCol   = `rgb(${Math.floor(r*0.7)},${Math.floor(g*0.7)},${Math.floor(b*0.7)})`;
+  const lightCol = `rgb(${Math.floor(r*0.8)},${Math.floor(g*0.8)},${Math.floor(b*0.8)})`;
+  const coreCol  = `rgb(${Math.floor(r*0.9)},${Math.floor(g*0.9)},${Math.floor(b*0.9)})`;
+  ctx.save();
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.globalAlpha = trackAlpha;
+  const drawPath = (width, color, shadowBlur = 0, shadowColor = 'transparent') => {
     ctx.beginPath();
-    ctx.moveTo(barL*0.6,-arrSize*0.55);
-    ctx.lineTo(barL*0.6,arrSize*0.55);
-    ctx.lineTo(barL*0.6+arrSize*0.6,0);
-    ctx.closePath();ctx.fill();
-    ctx.restore();
+    ctx.moveTo(path[0].x, path[0].y);
+    for (let i = 1; i < path.length; i++) ctx.lineTo(path[i].x, path[i].y);
+    ctx.lineWidth = width;
+    ctx.strokeStyle = color;
+    ctx.shadowBlur = shadowBlur;
+    ctx.shadowColor = shadowColor;
+    ctx.stroke();
+  };
 
-    ctx.restore();
+  drawPath(baseW + 10, '#ffffff', 6, 'rgba(0, 0, 0, 0.4)');
+  
+  drawPath(baseW, darkCol, 0, 'transparent');
+  drawPath(baseW * 0.75, midCol, 0, 'transparent');
+  drawPath(baseW * 0.4, lightCol, 0, 'transparent');
+  drawPath(baseW * 0.15, coreCol, 0, 'transparent');
+
+  ctx.restore();
+
+  const endPt = path[path.length - 1];
+  const singleDur = obj.duration / obj.repeat; // 单程耗时
+  const sz = cr * 2.1;
+  const tHC = Skin.tinted.hitcircle[obj.comboIndex];
+  const ov = sI('hitcircleoverlay');
+  const raImg = sI('reversearrow');
+
+  if (obj.repeat > 1) {
+    const maxOdd = obj.repeat % 2 === 0 ? obj.repeat - 1 : obj.repeat;
+    const lastFarHit = obj.time + maxOdd * singleDur;
+    let farEndAlpha = alpha;
+    if (time > lastFarHit) {
+      farEndAlpha = Math.max(0, alpha * (1 - (time - lastFarHit) / 150)); 
+    }
+
+    if (farEndAlpha > 0) {
+      ctx.save();
+      ctx.globalAlpha = farEndAlpha;
+      if (tHC) drawImg(ctx, tHC, endPt.x, endPt.y, sz, sz, 1);
+      if (ov) drawImg(ctx, ov, endPt.x, endPt.y, sz, sz, 1);
+
+      if (raImg) {
+        const prev = path.length >= 2 ? path[path.length - 2] : path[0];
+        const angle = Math.atan2(prev.y - endPt.y, prev.x - endPt.x);
+        ctx.translate(endPt.x, endPt.y);
+        ctx.rotate(angle);
+        const arrSz = cr * 1.7;
+        ctx.drawImage(raImg, -arrSz / 2, -arrSz / 2, arrSz, arrSz);
+      }
+      ctx.restore();
+    }
   } else {
-    // 普通尾端圆
-    ctx.globalAlpha=alpha*.5;
-    ctx.beginPath();ctx.arc(endPt.x,endPt.y,cr*.8,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
-    ctx.lineWidth=2;ctx.strokeStyle='#fff';ctx.stroke();
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    if (tHC) drawImg(ctx, tHC, endPt.x, endPt.y, sz, sz, 1);
+    if (ov) drawImg(ctx, ov, endPt.x, endPt.y, sz, sz, 1);
+    ctx.restore();
   }
-  // 滑条球
-  if(time>=obj.time){
-    const dur=obj.endTime-obj.time;
-    if(time<=obj.endTime){
-      // 正在滑动中
-      let prog=(time-obj.time)/dur;
-      if(obj.repeat>1){const seg=Math.floor(prog*obj.repeat);let lp=prog*obj.repeat-seg;if(seg%2===1)lp=1-lp;prog=lp}
-      prog=Math.max(0,Math.min(1,prog));const bp=getSliderPosAt(path,prog);
-      // 追踪判定圈
-      if(G.mouseDown){
-        ctx.globalAlpha=0.6;ctx.beginPath();ctx.arc(bp.x,bp.y,cr*1.6,0,Math.PI*2);
-        ctx.lineWidth=4;ctx.strokeStyle='#fff';ctx.stroke();ctx.globalAlpha=alpha}
-      // 滑条球
-      ctx.globalAlpha=1;ctx.beginPath();ctx.arc(bp.x,bp.y,cr*.6,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
-      ctx.lineWidth=2;ctx.strokeStyle=col;ctx.stroke();
+
+  if (time >= obj.time) {
+    const dur = obj.endTime - obj.time;
+    if (time <= obj.endTime) {
+      let prog = (time - obj.time) / dur;
+      if (obj.repeat > 1) {
+        const seg = Math.floor(prog * obj.repeat);
+        let lp = prog * obj.repeat - seg;
+        if (seg % 2 === 1) lp = 1 - lp;
+        prog = lp;
+      }
+      prog = Math.max(0, Math.min(1, prog));
+      const bp = getSliderPosAt(path, prog);
+      const fcImg = sI('sliderfollowcircle');
+      if (G.mouseDown && fcImg) drawImg(ctx, fcImg, bp.x, bp.y, cr * 3.2, cr * 3.2, 0.6);
+      const frame = Math.floor(time / 40) % 10;
+      const sbImg = sI('sliderb' + frame);
+      if (sbImg) drawImg(ctx, sbImg, bp.x, bp.y, cr * 1.3, cr * 1.3, 1);
     } else {
-      // 结束后：球在终点位置缩小渐出（跟随滑条 300ms 渐出）
-      const since=time-obj.endTime;const fadeProg=since/300;
-      if(fadeProg<1){
-        // 最终位置（最后一段的终点或起点，取决于折返次数）
-        const finalT=(obj.repeat%2===0)?0:1;
-        const bp=getSliderPosAt(path,finalT);
-        const shrink=cr*0.6-(cr*0.6-cr*0.6*1.1)*(1-fadeProg);
-        const ballAlpha=(1-fadeProg)*alpha;
-        ctx.globalAlpha=ballAlpha;
-        const currentR=cr*0.6*(1-fadeProg*0.34);
-        ctx.beginPath();ctx.arc(bp.x,bp.y,currentR,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
-        ctx.lineWidth=2;ctx.strokeStyle=col;ctx.stroke()}
+      const since = time - obj.endTime, fp = since / 300;
+      if (fp < 1) {
+        const finalT = (obj.repeat % 2 === 0) ? 0 : 1;
+        const bp = getSliderPosAt(path, finalT);
+        const frame = Math.floor(time / 40) % 10;
+        const sbImg = sI('sliderb' + frame);
+        if (sbImg) drawImg(ctx, sbImg, bp.x, bp.y, cr * 1.3 * (1 - fp * 0.34), cr * 1.3 * (1 - fp * 0.34), (1 - fp) * alpha);
+      }
     }
   }
-  ctx.globalAlpha=alpha}
+}
 
-// ── 判定特效渲染 ──
-function renderEffects(ctx,time){
-  const active=[];
-  for(const eff of G.effects){
-    const age=time-eff.born;
-    if(eff.type==='miss'){
-      // Miss X: 白色本体+红色描边发光，旋转，缓缓下落+渐出，持续800ms
-      if(age>800)continue;
-      const prog=age/800;const alpha=1-prog;const yOff=prog*30; // 下落30像素
-      ctx.save();ctx.globalAlpha=alpha;ctx.translate(eff.x,eff.y+yOff);ctx.rotate(eff.angle);
-      const sz=12;
-      // 发光
-      ctx.shadowColor='#ff4444';ctx.shadowBlur=12;
-      // 红色描边 X
-      ctx.lineWidth=7;ctx.strokeStyle='#ff4444';ctx.lineCap='round';
-      ctx.beginPath();ctx.moveTo(-sz,-sz);ctx.lineTo(sz,sz);ctx.moveTo(sz,-sz);ctx.lineTo(-sz,sz);ctx.stroke();
-      // 白色本体 X
-      ctx.shadowBlur=0;ctx.lineWidth=5;ctx.strokeStyle='#fff';
-      ctx.beginPath();ctx.moveTo(-sz,-sz);ctx.lineTo(sz,sz);ctx.moveTo(sz,-sz);ctx.lineTo(-sz,sz);ctx.stroke();
-      ctx.restore();active.push(eff)}
-    else if(eff.type==='score'){
-      // 分数: 白色本体+彩色描边发光，原地停留后放大消失，持续700ms
-      if(age>700)continue;
-      const stayTime=300;const fadeTime=400;
-      let alpha,scale;
-      if(age<stayTime){alpha=1;scale=1}
-      else{const fp=(age-stayTime)/fadeTime;alpha=1-fp;scale=1+fp*0.6}
-      ctx.save();ctx.globalAlpha=alpha;ctx.translate(eff.x,eff.y);ctx.scale(scale,scale);
-      ctx.font="bold 28px 'ZCOOL KuaiLe',sans-serif";ctx.textAlign='center';ctx.textBaseline='middle';
-      // 发光
-      ctx.shadowColor=eff.color;ctx.shadowBlur=10;
-      // 彩色描边
-      ctx.lineWidth=4;ctx.strokeStyle=eff.color;ctx.strokeText(eff.text,0,0);
-      // 白色本体
-      ctx.shadowBlur=0;ctx.fillStyle='#fff';ctx.fillText(eff.text,0,0);
-      ctx.restore();active.push(eff)}}
-  // 滑条判定圈爆炸
-  const activeBursts=[];
-  for(const b of(G.sliderBurstEffects||[])){
-    const age=time-b.born;if(age>300)continue;
-    const prog=age/300;
-    const radius=b.startR+prog*60; // 向外扩散60像素
-    const alpha=(1-prog)*0.5;
-    ctx.save();ctx.globalAlpha=alpha;
-    ctx.beginPath();ctx.arc(b.x,b.y,radius,0,Math.PI*2);
-    ctx.lineWidth=2;ctx.strokeStyle='rgba(255,255,255,0.8)';ctx.stroke();
-    ctx.restore();activeBursts.push(b)}
-  G.sliderBurstEffects=activeBursts;
-  G.effects=active}
+function renderEffects(ctx,time){const active=[];
+  for(const eff of G.effects){const age=time-eff.born;
+    if(eff.type==='miss'){if(age>800)continue;const prog=age/800,alpha=1-prog,yOff=prog*30;
+      const hImg=sI('hit0');if(hImg){ctx.save();ctx.globalAlpha=alpha;ctx.translate(eff.x,eff.y+yOff);ctx.rotate(eff.angle);
+        const sz=50;ctx.drawImage(hImg,-sz/2,-sz/2,sz,sz);ctx.restore()}active.push(eff)}
+    else if(eff.type==='score'){if(age>700)continue;const stay=300,fade=400;let alpha,scale;
+      if(age<stay){alpha=1;scale=1}else{const fp=(age-stay)/fade;alpha=1-fp;scale=1+fp*0.6}
+      const hImg=sI(eff.img);if(hImg){ctx.save();ctx.globalAlpha=alpha;ctx.translate(eff.x,eff.y);ctx.scale(scale,scale);const sz = 45;const ratio = hImg.width / hImg.height; const w = sz * ratio;const h = sz;ctx.drawImage(hImg, -w/2, -h/2, w, h);ctx.restore();}active.push(eff)}}
+  const activeBursts=[];for(const b of(G.sliderBurstEffects||[])){const age=time-b.born;if(age>300)continue;const prog=age/300;
+    ctx.save();ctx.globalAlpha=(1-prog)*0.5;ctx.beginPath();ctx.arc(b.x,b.y,b.startR+prog*60,0,Math.PI*2);
+    ctx.lineWidth=2;ctx.strokeStyle='rgba(255,255,255,0.8)';ctx.stroke();ctx.restore();activeBursts.push(b)}
+  G.sliderBurstEffects=activeBursts;G.effects=active}
 
-function renderCursor(ctx,time,W,H){
-  const mx=G.mouseX,my=G.mouseY;
-  // ── 拖尾 ──
-  G.cursorTrail=G.cursorTrail||[];
-  G.cursorTrail.push({x:mx,y:my,t:time});
-  G.cursorTrail=G.cursorTrail.filter(p=>time-p.t<600);
-  if(G.cursorTrail.length>1){
-    ctx.save();ctx.lineCap='round';
-    for(let i=1;i<G.cursorTrail.length;i++){
-      const p0=G.cursorTrail[i-1],p1=G.cursorTrail[i];
-      const age=(time-p1.t)/600;const alpha=Math.max(0,(1-age)*0.4);
-      const width=Math.max(1.2,(1.2-age)*7.2);
-      ctx.globalAlpha=alpha;ctx.lineWidth=width;
-      ctx.strokeStyle='rgba(80,120,255,0.7)';
-      ctx.beginPath();ctx.moveTo(p0.x,p0.y);ctx.lineTo(p1.x,p1.y);ctx.stroke()}
-    ctx.restore()}
+function renderCursor(ctx,time,W,H){const mx=G.mouseX,my=G.mouseY;
+  const curImg=sI('cursor'),trailImg=sI('cursortrail'),midImg=sI('cursormiddle');
+  if (G._lastMouseX !== undefined) {
+    const dist = Math.hypot(mx - G._lastMouseX, my - G._lastMouseY);
+    const steps = Math.floor(dist / 3);
+    for(let i = 1; i <= steps; i++) {
+      const interpX = G._lastMouseX + (mx - G._lastMouseX) * (i / steps);
+      const interpY = G._lastMouseY + (my - G._lastMouseY) * (i / steps);
+      G.cursorTrail.push({x: interpX, y: interpY, t: time});
+    }
+  }
+  G.cursorTrail.push({x: mx, y: my, t: time});
+  G._lastMouseX = mx; G._lastMouseY = my;
 
-  // ── 点击扩散圆 ──
-  G.clickRipples=G.clickRipples||[];
+  G.cursorTrail = G.cursorTrail.filter(p => time - p.t < 600);
+  if(trailImg){for(const p of G.cursorTrail){const age=(time-p.t)/600,alpha=Math.max(0,(1-age)*0.5),sz=12*(1-age*0.3);
+    ctx.save();ctx.globalAlpha=alpha;ctx.drawImage(trailImg,p.x-sz/2,p.y-sz/2,sz,sz);ctx.restore()}}
   G.clickRipples=G.clickRipples.filter(r=>time-r.t<300);
-  for(const rip of G.clickRipples){
-    const age=(time-rip.t)/300;const radius=40+age*30;
-    ctx.save();ctx.globalAlpha=(1-age)*0.25;
-    ctx.beginPath();ctx.arc(rip.x,rip.y,radius,0,Math.PI*2);
-    ctx.lineWidth=2;ctx.strokeStyle='rgba(180,200,255,0.8)';ctx.stroke();ctx.restore()}
+  for(const rip of G.clickRipples){const age=(time-rip.t)/300;ctx.save();ctx.globalAlpha=(1-age)*0.25;
+    ctx.beginPath();ctx.arc(rip.x,rip.y,40+age*30,0,Math.PI*2);ctx.lineWidth=2;ctx.strokeStyle='rgba(180,200,255,0.8)';ctx.stroke();ctx.restore()}
+  if(curImg){
+    const targetScale = G.mouseDown ? 1.0 : 0.75; G.cursorScale = G.cursorScale || 1.0;G.cursorScale += (targetScale - G.cursorScale) * 0.25;const sz = 100 * G.cursorScale;ctx.save();ctx.translate(mx, my);ctx.rotate(time * 0.001);ctx.globalAlpha = 0.95;ctx.drawImage(curImg, -sz / 2, -sz / 2, sz, sz);ctx.restore();if(midImg) drawImg(ctx, midImg, mx, my, sz * 0.3, sz * 0.3, 0.9);
+  }}
 
-// ── 光标本体 ──
-  const pressed=G.mouseDown;const baseR=pressed?28:21;
-  ctx.save();ctx.translate(mx,my);
+function numToImagesHTML(text, height = 30) {
+  return String(text).split('').map(char => {
+    if (isNaN(parseInt(char))) {return `<span style="font-size:${height*0.8}px; vertical-align:middle; margin:0 2px;">${char}</span>`;}
+    const img = Skin.img['default-' + char];
+    if (img && img.src) {return `<img src="${img.src}" style="height:${height}px; vertical-align:middle; margin:0 2px; pointer-events:none;">`;}
+    return char;
+  }).join('');
+}
 
-  // 发光
-  ctx.shadowColor='rgba(100,160,255,0.6)';ctx.shadowBlur=16;
-
-  // 白色实心填充
-  ctx.globalAlpha=0.95;
-  ctx.beginPath();ctx.arc(0,0,baseR,0,Math.PI*2);
-  ctx.fillStyle='#fff';ctx.fill();
-
-  // 蓝色描边
-  ctx.lineWidth=5;
-  ctx.strokeStyle='rgba(80,185,255,0.9)';ctx.stroke();
-
-  // 蓝色中心实心点
-  ctx.shadowBlur=8;
-  ctx.beginPath();ctx.arc(0,0,baseR*0.25,0,Math.PI*2);
-  ctx.fillStyle='rgba(80,185,255,0.9)';ctx.fill();
-
-
-  ctx.shadowBlur=0;ctx.restore()}
-
-// ── HUD ──
 function updateHUD(){
-  ghudScore.textContent=String(G.score).padStart(8,'0');
-  ghudComboNum.textContent=G.combo;
-  const total=G.hits[300]+G.hits[100]+G.hits[50]+G.hits.miss;
-  const acc=total>0?(G.hits[300]*300+G.hits[100]*100+G.hits[50]*50)/(total*300)*100:100;
-  ghudAccuracy.textContent=acc.toFixed(2)+'%';
-  const lastTime=G.bm.stats.lastObjectTime||1;
-  const progress=Math.max(0,Math.min(1,G.time/lastTime));
-  // 圆形进度
-  const ring=document.getElementById('progressRing');const rc=ring.getContext('2d');
-  const s=54,c=s/2,r=21;rc.clearRect(0,0,s,s);
-
-  // 外圈（实心描边）
-  rc.beginPath();rc.arc(c,c,r,0,Math.PI*2);
-  rc.lineWidth=2.5;rc.strokeStyle='rgba(255,255,255,0.9)';rc.stroke();
-
-  // 进度扇形填充（从12点方向顺时针）
-  if(progress>0){
-    rc.save();rc.globalAlpha=0.5;
-    rc.beginPath();rc.moveTo(c,c);
-    rc.arc(c,c,r,-Math.PI/2,-Math.PI/2+progress*Math.PI*2);
+  ghudScore.innerHTML = numToImagesHTML(String(G.score).padStart(8,'0'), 40);
+  ghudComboNum.innerHTML = numToImagesHTML(G.combo, 50);
+  const total = G.hits[300] + G.hits[100] + G.hits[50] + G.hits.miss;
+  const acc = total > 0 ? (G.hits[300]*300 + G.hits[100]*100 + G.hits[50]*50) / (total*300) * 100 : 100;
+  ghudAccuracy.innerHTML = numToImagesHTML(acc.toFixed(2) + '%', 24); const progress=Math.max(0,Math.min(1,G.time/(G.bm.stats.lastObjectTime||1)));
+  const ring=document.getElementById('progressRing'),rc=ring.getContext('2d'),s=54,c=s/2,rr=21;rc.clearRect(0,0,s,s);
+  rc.beginPath();rc.arc(c,c,rr,0,Math.PI*2);rc.lineWidth=2.5;rc.strokeStyle='rgba(255,255,255,0.9)';rc.stroke();
+  if(progress>0){rc.save();rc.globalAlpha=0.5;rc.beginPath();rc.moveTo(c,c);rc.arc(c,c,rr,-Math.PI/2,-Math.PI/2+progress*Math.PI*2);
     rc.closePath();rc.fillStyle='#fff';rc.fill();rc.restore()}
+  rc.beginPath();rc.arc(c,c,2.5,0,Math.PI*2);rc.fillStyle='rgba(255,255,255,0.9)';rc.fill()}
 
-  // 中心实心点
-  rc.beginPath();rc.arc(c,c,2.5,0,Math.PI*2);
-  rc.fillStyle='rgba(255,255,255,0.9)';rc.fill();rc.stroke()}
-
-// ── 结算 ──
-function endGame(){
-  G.state='ended';cancelAnimationFrame(G.animFrame);
-  try{G.audioSource.stop()}catch(e){}
+function endGame(){G.state='ended';cancelAnimationFrame(G.animFrame);try{G.audioSource.stop()}catch(e){}
   const total=G.hits[300]+G.hits[100]+G.hits[50]+G.hits.miss;
   const acc=total>0?(G.hits[300]*300+G.hits[100]*100+G.hits[50]*50)/(total*300)*100:0;
-  let grade='D';if(acc>=95&&G.hits.miss===0)grade='S';else if(acc>=90)grade='A';
-  else if(acc>=80)grade='B';else if(acc>=70)grade='C';
-
-  const m=G.bm.metadata;const title=m.titleUnicode||m.title;const artist=m.artistUnicode||m.artist;
-  document.getElementById('rpSong').innerHTML=esc(artist)+' - '+esc(title)+' ['+esc(m.version)+']';
+  let grade='D';if(acc>=95&&G.hits.miss===0)grade='S';else if(acc>=90)grade='A';else if(acc>=80)grade='B';else if(acc>=70)grade='C';
+  const m=G.bm.metadata;document.getElementById('rpSong').innerHTML=esc(m.artistUnicode||m.artist)+' - '+esc(m.titleUnicode||m.title)+' ['+esc(m.version)+']';
   document.getElementById('rpMapper').textContent='Beatmap by '+m.creator;
-  document.getElementById('rpScore').textContent=String(G.score).padStart(8,'0');
+  document.getElementById('rpScore').innerHTML = numToImagesHTML(String(G.score).padStart(8,'0'), 50);
   document.getElementById('rpHits').innerHTML=
-    hitRow('#64b5f6','300',G.hits[300])+hitRow('#ffd700','激 300','—')+
-    hitRow('#66bb6a','100',G.hits[100])+hitRow('#8888ff','喝 100','—')+
+    hitRow('#64b5f6','300',G.hits[300])+hitRow('#ffd700','激',G.hits.geki)+
+    hitRow('#66bb6a','100',G.hits[100])+hitRow('#8888ff','喝',G.hits.katu)+
     hitRow('#ffd54f','50',G.hits[50])+hitRow('#ef5350','Miss',G.hits.miss);
-  document.getElementById('rpCombo').textContent=G.maxCombo+'x';
-  document.getElementById('rpAcc').textContent=acc.toFixed(2)+'%';
-  const gradeEl=document.getElementById('rpGrade');gradeEl.textContent=grade;
-  gradeEl.className='rp-grade '+grade;
-  // 右侧背景
+  document.getElementById('rpCombo').innerHTML = numToImagesHTML(G.maxCombo + 'x', 30);document.getElementById('rpAcc').innerHTML = numToImagesHTML(acc.toFixed(2) + '%', 30);
+  const ge=document.getElementById('rpGrade');ge.textContent=grade;ge.className='rp-grade '+grade;
   const bgUrl=G.bm.events.background?G.bm._folder+'/'+G.bm.events.background:'';
-  document.getElementById('rpRight').style.backgroundImage=bgUrl?`url('${bgUrl}')`:'none';
-  resultsOverlay.classList.remove('hidden')}
+  document.getElementById('rpRight').style.backgroundImage=bgUrl?`url('${bgUrl}')`:'none';resultsOverlay.classList.remove('hidden')}
+function hitRow(c,l,n){return`<div class="rp-hit"><div class="rp-hit-badge" style="background:${c};color:#fff">${l}</div><span class="rp-hit-count">${n}x</span></div>`}
 
-function hitRow(color,label,count){
-  return `<div class="rp-hit"><div class="rp-hit-badge" style="background:${color};color:#fff">${label}</div><span class="rp-hit-count">${count}x</span></div>`}
-
-// ── 退出 ──
-function exitGame(){
-  G.state='list';cancelAnimationFrame(G.animFrame);
-  try{if(G.audioSource)G.audioSource.stop()}catch(e){}
-  try{if(G.audioCtx)G.audioCtx.close()}catch(e){}
+function exitGame(){G.state='list';cancelAnimationFrame(G.animFrame);
+  try{if(G.audioSource)G.audioSource.stop()}catch(e){}try{if(G.audioCtx)G.audioCtx.close()}catch(e){}
   G.audioCtx=null;G.audioSource=null;G.audioBuffer=null;G.bgImage=null;
   const vEl=document.getElementById('bgVideo');vEl.pause();vEl.style.opacity='0';vEl.removeAttribute('src');G.bgVideo=null;
-  gameScreen.classList.add('hidden');resultsOverlay.classList.add('hidden');
-  pauseOverlay.classList.add('hidden');gamePrompt.classList.add('hidden');
+  gameScreen.classList.add('hidden');resultsOverlay.classList.add('hidden');pauseOverlay.classList.add('hidden');gamePrompt.classList.add('hidden');
   document.getElementById('topBar').style.display='';
-  // 清除所有选中状态的 DOM class
-  document.querySelectorAll('.sg-card.selected').forEach(el=>el.classList.remove('selected'));
-  document.querySelectorAll('.diff-card.selected').forEach(el=>el.classList.remove('selected'));
+  document.querySelectorAll('.sg-card.selected,.diff-card.selected').forEach(el=>el.classList.remove('selected'));
   document.querySelectorAll('.diff-list.expanded').forEach(el=>el.classList.remove('expanded'));
   document.querySelectorAll('.sg-arrow.open').forEach(el=>el.classList.remove('open'));
-  hideInfoPanel();selectedDiff=null;expandedGroup=-1;}
+  hideInfoPanel();selectedDiff=null;expandedGroup=-1}
 
-// ── Canvas ──
-function resizeCanvas(){const W=window.innerWidth,H=window.innerHeight;
-  G.canvas.width=W;G.canvas.height=H;const sx=W/512,sy=H/384;
-  G.scale=Math.min(sx,sy)*.85;G.offX=(W-512*G.scale)/2;G.offY=(H-384*G.scale)/2}
+function resizeCanvas(){const W=window.innerWidth,H=window.innerHeight;G.canvas.width=W;G.canvas.height=H;
+  const sx=W/512,sy=H/384;G.scale=Math.min(sx,sy)*.85;G.offX=(W-512*G.scale)/2;G.offY=(H-384*G.scale)/2}
 window.addEventListener('resize',()=>{if(G.state!=='list')resizeCanvas()});
 
-// ── 输入 ──
-gameCanvas.addEventListener('mousedown',e=>{
-  if(G.state==='ready'){startPlaying();return}
-  if(G.state!=='playing')return;G.mouseDown=true;
-  G.clickRipples=G.clickRipples||[];G.clickRipples.push({x:e.clientX,y:e.clientY,t:G.time});
-  G.pendingClicks.push({x:e.clientX,y:e.clientY,time:G.time})});
+gameCanvas.addEventListener('mousedown',e=>{if(G.state==='ready'){startPlaying();return}if(G.state!=='playing')return;G.mouseDown=true;
+  G.clickRipples.push({x:e.clientX,y:e.clientY,t:G.time});G.pendingClicks.push({x:e.clientX,y:e.clientY,time:G.time})});
 gameCanvas.addEventListener('mouseup',()=>{G.mouseDown=false});
-gameCanvas.addEventListener('touchstart',e=>{e.preventDefault();
-  G.clickRipples=G.clickRipples||[];G.clickRipples.push({x:t.clientX,y:t.clientY,t:G.time});
-  if(G.state==='ready'){startPlaying();return}
-  if(G.state!=='playing')return;G.mouseDown=true;
-  for(const t of e.changedTouches)G.pendingClicks.push({x:t.clientX,y:t.clientY,time:G.time})},{passive:false});
+gameCanvas.addEventListener('touchstart',e=>{e.preventDefault();if(G.state==='ready'){startPlaying();return}if(G.state!=='playing')return;G.mouseDown=true;
+  for(const t of e.changedTouches){G.pendingClicks.push({x:t.clientX,y:t.clientY,time:G.time});
+    G.clickRipples.push({x:t.clientX,y:t.clientY,t:G.time})}},{passive:false});
 gameCanvas.addEventListener('touchend',()=>{G.mouseDown=false});
-document.addEventListener('keydown',e=>{
-  if(e.key==='`'&&G.state==='playing'){G.quickRestartActive=true}
+document.addEventListener('keydown',e=>{if(e.key==='`'&&G.state==='playing')G.quickRestartActive=true;
   if(G.state==='ready'&&(e.key==='z'||e.key==='x'||e.key===' ')){startPlaying();return}
   if(e.key==='Escape'){if(G.state==='playing')pauseGame();else if(G.state==='paused')resumeGame();return}
-  if(G.state!=='playing')return;
-  if(e.key==='z'||e.key==='x'){G.mouseDown=true;
-    G.pendingClicks.push({x:G.mouseX,y:G.mouseY,time:G.time})
-    G.clickRipples=G.clickRipples||[];G.clickRipples.push({x:G.mouseX,y:G.mouseY,t:G.time});}});
-document.addEventListener('keyup',e=>{
-  if(e.key==='z'||e.key==='x')G.mouseDown=false;
+  if(G.state!=='playing')return;if(e.key==='z'||e.key==='x'){G.mouseDown=true;
+    G.pendingClicks.push({x:G.mouseX,y:G.mouseY,time:G.time});G.clickRipples.push({x:G.mouseX,y:G.mouseY,t:G.time})}});
+document.addEventListener('keyup',e=>{if(e.key==='z'||e.key==='x')G.mouseDown=false;
   if(e.key==='`'){G.quickRestartActive=false;G.quickRestartProgress=0}});
 document.addEventListener('mousemove',e=>{G.mouseX=e.clientX;G.mouseY=e.clientY});
+document.addEventListener("click",()=>{
+  initHitSounds()
+},{once:true})
+document.querySelectorAll('.pause-btn').forEach(btn=>{
+        btn.addEventListener('mouseenter',()=>playHS('menuclick',0.3))
+      })
 gamePrompt.addEventListener('click',()=>{if(G.state==='ready')startPlaying()});
 init();
 </script>

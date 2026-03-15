@@ -40,7 +40,7 @@ SliderTickRate:2
 
 [Events]
 //Background and Video events
-Video,-20,"Video.avi"
+Video,-20,"Video.mp4"
 0,0,"BG.jpg",0,0
 //Break Periods
 2,157779,161365
