@@ -10,7 +10,7 @@
     :root{--bg:#f3ead7;--card:rgba(255,252,244,0.95);--text:#5a4e42;--text-dim:#8b7a6b;--accent:#ed8941;--accent-glow:rgba(237,137,65,0.25);--brown:#8b6a52;--pink:#ff6b9d;--blue:#4fc3f7;--green:#66bb6a;--yellow:#ffd54f;--zone-border:rgba(139,106,82,0.3);--overlay-bg:rgba(243,234,215,0.95);--back-bg:rgba(255,252,244,0.9);--back-border:rgba(176,120,83,0.2);--stat-bg:rgba(139,106,82,0.08)}
     [data-theme="dark"]{--bg:#1a1612;--card:rgba(38,32,26,0.95);--text:#d4c8b8;--text-dim:#9e8e7d;--accent:#f0a060;--accent-glow:rgba(240,160,96,0.25);--brown:#b89a7a;--pink:#ff8ab5;--blue:#64b5f6;--green:#81c784;--yellow:#ffe082;--zone-border:rgba(176,120,83,0.2);--overlay-bg:rgba(26,22,18,0.95);--back-bg:rgba(38,32,26,0.9);--back-border:rgba(176,120,83,0.15);--stat-bg:rgba(176,120,83,0.08)}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{background-color:var(--bg);background-image:url("/image/background.webp");background-size:cover;background-position:center;background-attachment:fixed;font-family:'Noto Serif SC',serif;color:var(--text);min-height:100vh;animation:pageFade .4s ease;overflow-x:hidden}
+    body{background-color:var(--bg);background-image:url("../image/background.webp");background-size:cover;background-position:center;background-attachment:fixed;font-family:'Noto Serif SC',serif;color:var(--text);min-height:100vh;animation:pageFade .4s ease;overflow-x:hidden}
     @keyframes pageFade{from{opacity:0}to{opacity:1}}
     @keyframes cardUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
     .top-bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--back-bg);border-bottom:1px solid var(--zone-border);backdrop-filter:blur(8px)}
@@ -179,7 +179,7 @@
   </div>
 
 <script>
-const SKINS_ROOT = '/osu/Skins/';
+const SKINS_ROOT = './Skins/';
 const DEFAULT_SKIN = 'Legacy';
 let currentSkin = null; // 未来用于皮肤选择，null=只用默认
 
@@ -487,7 +487,7 @@ function handleDiffClick(gi,di){if(selectedDiff&&selectedDiff.gi===gi&&selectedD
   const nb=allBeatmaps[gi].diffs[di];const sa=selectedDiff&&Preview.currentFolder===nb._folder&&Preview.currentFile===nb.general.audioFilename;
   if(selectedDiff)closeDiffDOM(selectedDiff.gi,selectedDiff.di,sa);selectedDiff={gi,di};openDiffDOM(gi,di)}
 function toggleGroup(gi){playHS('menuhit',0.6);if(expandedGroup===gi){closeGroupDOM(gi);expandedGroup=-1;
-    document.body.style.backgroundImage='url("/image/background.webp")';
+    document.body.style.backgroundImage='url("../image/background.webp")';
     if(selectedDiff&&selectedDiff.gi===gi){closeDiffDOM(selectedDiff.gi,selectedDiff.di);selectedDiff=null;hideInfoPanel()}}
   else{if(expandedGroup>=0)closeGroupDOM(expandedGroup);if(selectedDiff){closeDiffDOM(selectedDiff.gi,selectedDiff.di);selectedDiff=null;hideInfoPanel()}
     expandedGroup=gi;openGroupDOM(gi);const first=allBeatmaps[gi].diffs[0];
@@ -519,7 +519,7 @@ function showInfoPanel(gi,di){const bm=allBeatmaps[gi].diffs[di],m=bm.metadata,d
   panel.classList.add('show');const bgUrl=bm.events.background?bm._folder+'/'+bm.events.background:'';
   if(bgUrl)document.body.style.backgroundImage=`url('${bgUrl}')`;startPreview(bm)}
 function hideInfoPanel(keepAudio){document.getElementById('infoPanel').classList.remove('show');
-  document.body.style.backgroundImage='url("/image/background.webp")';if(!keepAudio)fadeOutAndStop()}
+  document.body.style.backgroundImage='url("../image/background.webp")';if(!keepAudio)fadeOutAndStop()}
 function renderStars(stars){stars=Math.min(stars,10);const full=Math.floor(stars),partial=stars-full,empty=10-full-(partial>0?1:0);let h='';
   for(let i=0;i<full;i++)h+='<span class="star-full">★</span>';
   if(partial>0)h+=`<span class="star-partial">★<span class="star-partial-fill" style="width:${Math.round(partial*100)}%">★</span></span>`;
